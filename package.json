@@ -13,6 +13,14 @@
     "url": "https://github.com/thewoowon/my-idol.git",
     "directory": "my-idol"
   },
+  "license": "MIT",
+  "main": "index.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -32,14 +40,21 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "critters": "^0.0.22",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "postcss": "^8",
     "prettier": "^3.2.5",
+    "strip-ansi": "^7.1.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "resolutions": {
+    "strip-ansi": "6.0.1",
+    "string-width": "4.2.2",
+    "wrap-ansi": "7.0.0"
   },
   "husky": {
     "hooks": {
@@ -48,9 +63,10 @@
     }
   },
   "lint-staged": {
-    "*.@(ts|tsx)": [
-      "yarn lint",
-      "yarn format"
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
     ]
   }
 }
