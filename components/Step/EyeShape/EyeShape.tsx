@@ -3,56 +3,58 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const EyeShape = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "height" };
-            });
-          }}
-        >
-          이전
-        </Button>
-      </div>
-      <Grid>
-        {EYES_TYPE.map((item, index) => {
-          return (
-            <Selection
-              key={index}
-              onClick={() => {
-                setFlowContext((prev) => {
-                  return {
-                    ...prev,
-                    context: { ...prev.context, eyeShape: item },
-                  };
-                });
-              }}
-              selected={
-                flowContext.context && flowContext.context.eyeShape === item
-              }
-            >
-              <div>{item}</div>
-            </Selection>
-          );
-        })}
-      </Grid>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "faceShape" };
-            });
-          }}
-        >
-          다음
-        </Button>
-      </div>
-    </Container>
-  );
-};
+const EyeShape = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "height", direction: "prev" };
+              });
+            }}
+          >
+            이전
+          </Button>
+        </div>
+        <Grid>
+          {EYES_TYPE.map((item, index) => {
+            return (
+              <Selection
+                key={index}
+                onClick={() => {
+                  setFlowContext((prev) => {
+                    return {
+                      ...prev,
+                      context: { ...prev.context, eyeShape: item },
+                    };
+                  });
+                }}
+                selected={
+                  flowContext.context && flowContext.context.eyeShape === item
+                }
+              >
+                <div>{item}</div>
+              </Selection>
+            );
+          })}
+        </Grid>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "faceShape", direction: "next" };
+              });
+            }}
+          >
+            다음
+          </Button>
+        </div>
+      </Container>
+    );
+  },
+);
 
 EyeShape.displayName = "EyeShape";
 

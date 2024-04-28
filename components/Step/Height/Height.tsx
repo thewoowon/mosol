@@ -3,77 +3,79 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const Height = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "lookLike" };
-            });
-          }}
-        >
-          이전
-        </Button>
-      </div>
-      <Grid>
-        {flowContext.context.sex === "남자"
-          ? HEIGHT_RANGE["MALE"].map((item, index) => {
-              return (
-                <Selection
-                  key={index}
-                  onClick={() => {
-                    setFlowContext((prev) => {
-                      return {
-                        ...prev,
-                        context: { ...prev.context, height: item },
-                      };
-                    });
-                  }}
-                  selected={
-                    flowContext.context && flowContext.context.height === item
-                  }
-                >
-                  <div>{item}</div>
-                </Selection>
-              );
-            })
-          : HEIGHT_RANGE["FEMALE"].map((item, index) => {
-              return (
-                <Selection
-                  key={index}
-                  onClick={() => {
-                    setFlowContext((prev) => {
-                      return {
-                        ...prev,
-                        context: { ...prev.context, height: item },
-                      };
-                    });
-                  }}
-                  selected={
-                    flowContext.context && flowContext.context.height === item
-                  }
-                >
-                  <div>{item}</div>
-                </Selection>
-              );
-            })}
-      </Grid>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "eyeShape" };
-            });
-          }}
-        >
-          다음
-        </Button>
-      </div>
-    </Container>
-  );
-};
+const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "lookLike", direction: "prev" };
+              });
+            }}
+          >
+            이전
+          </Button>
+        </div>
+        <Grid>
+          {flowContext.context.sex === "남자"
+            ? HEIGHT_RANGE["MALE"].map((item, index) => {
+                return (
+                  <Selection
+                    key={index}
+                    onClick={() => {
+                      setFlowContext((prev) => {
+                        return {
+                          ...prev,
+                          context: { ...prev.context, height: item },
+                        };
+                      });
+                    }}
+                    selected={
+                      flowContext.context && flowContext.context.height === item
+                    }
+                  >
+                    <div>{item}</div>
+                  </Selection>
+                );
+              })
+            : HEIGHT_RANGE["FEMALE"].map((item, index) => {
+                return (
+                  <Selection
+                    key={index}
+                    onClick={() => {
+                      setFlowContext((prev) => {
+                        return {
+                          ...prev,
+                          context: { ...prev.context, height: item },
+                        };
+                      });
+                    }}
+                    selected={
+                      flowContext.context && flowContext.context.height === item
+                    }
+                  >
+                    <div>{item}</div>
+                  </Selection>
+                );
+              })}
+        </Grid>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "eyeShape", direction: "next" };
+              });
+            }}
+          >
+            다음
+          </Button>
+        </div>
+      </Container>
+    );
+  },
+);
 
 Height.displayName = "Height";
 

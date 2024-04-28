@@ -1,5 +1,4 @@
 "use client";
-
 import {
   Sex,
   FaceShape,
@@ -14,10 +13,11 @@ import {
 import { FlowContextType } from "@/types";
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { AnimatePresence, motion } from "framer-motion";
 
 const FlowPage = () => {
   const [flowContext, setFlowContext] = useState<FlowContextType>({
+    direction: "next",
     step: "sex",
     context: {
       sex: null,
@@ -32,92 +32,91 @@ const FlowPage = () => {
     },
   });
 
-  const renderComponent = () => {
-    switch (flowContext.step) {
-      case "sex":
-        return (
-          <Sex
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "mbti":
-        return (
-          <MBTI
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "lookLike":
-        return (
-          <LookLike
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "height":
-        return (
-          <Height
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "eyeShape":
-        return (
-          <EyeShape
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "faceShape":
-        return (
-          <FaceShape
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "fashion":
-        return (
-          <Fashion
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "interest":
-        return (
-          <Interest
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      case "hobby":
-        return (
-          <Hobby
-            key={flowContext.step}
-            setFlowContext={setFlowContext}
-            flowContext={flowContext}
-          />
-        );
-      default:
-        return null;
-    }
+  const getComponent = (step: string) => {
+    const components: {
+      [key: string]: JSX.Element | null;
+    } = {
+      sex: (
+        <Sex
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      mbti: (
+        <MBTI
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      lookLike: (
+        <LookLike
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      height: (
+        <Height
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      eyeShape: (
+        <EyeShape
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      faceShape: (
+        <FaceShape
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      fashion: (
+        <Fashion
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      interest: (
+        <Interest
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+      hobby: (
+        <Hobby
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
+    };
+
+    return components[step] || null;
   };
 
   return (
     <Container>
-      <TransitionGroup>
-        <CSSTransition key={flowContext.step} timeout={300} classNames="fade">
-          {renderComponent()}
-        </CSSTransition>
-      </TransitionGroup>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={flowContext.step}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+        >
+          {getComponent(flowContext.step)}
+        </motion.div>
+      </AnimatePresence>
     </Container>
   );
 };

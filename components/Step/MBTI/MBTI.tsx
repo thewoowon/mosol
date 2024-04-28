@@ -3,60 +3,63 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const MBTI = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "sex" };
-            });
-          }}
-        >
-          이전
-        </Button>
-      </div>
-      <div>
-        <Grid>
-          {MBTI_ITEMS.map((item, index) => {
-            return (
-              <Selection
-                key={index}
-                onClick={() => {
-                  setFlowContext((prev) => {
-                    return {
-                      ...prev,
-                      context: { ...prev.context, mbti: item.type },
-                    };
-                  });
-                }}
-                selected={
-                  flowContext.context && flowContext.context.mbti === item.type
-                }
-              >
-                <div>{item.description}</div>
-                <div>{item.detail}</div>
-                <div>{item.type}</div>
-              </Selection>
-            );
-          })}
-        </Grid>
-      </div>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "lookLike" };
-            });
-          }}
-        >
-          다음
-        </Button>
-      </div>
-    </Container>
-  );
-};
+const MBTI = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "sex", direction: "prev" };
+              });
+            }}
+          >
+            이전
+          </Button>
+        </div>
+        <div>
+          <Grid>
+            {MBTI_ITEMS.map((item, index) => {
+              return (
+                <Selection
+                  key={index}
+                  onClick={() => {
+                    setFlowContext((prev) => {
+                      return {
+                        ...prev,
+                        context: { ...prev.context, mbti: item.type },
+                      };
+                    });
+                  }}
+                  selected={
+                    flowContext.context &&
+                    flowContext.context.mbti === item.type
+                  }
+                >
+                  <div>{item.description}</div>
+                  <div>{item.detail}</div>
+                  <div>{item.type}</div>
+                </Selection>
+              );
+            })}
+          </Grid>
+        </div>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "lookLike", direction: "next" };
+              });
+            }}
+          >
+            다음
+          </Button>
+        </div>
+      </Container>
+    );
+  },
+);
 
 MBTI.displayName = "MBTI";
 

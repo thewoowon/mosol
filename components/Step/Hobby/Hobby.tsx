@@ -3,61 +3,64 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const Hobby = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "interest" };
-            });
-          }}
-        >
-          이전
-        </Button>
-      </div>
-      <Grid>
-        {Object.keys(HOBBY).map((category, index1) => (
-          <div key={index1}>
-            <Category>{category}</Category>
-            <div>
-              {HOBBY[category].map((item, index2) => {
-                return (
-                  <Selection
-                    key={index2}
-                    onClick={() => {
-                      setFlowContext((prev) => {
-                        return {
-                          ...prev,
-                          context: { ...prev.context, hobby: item },
-                        };
-                      });
-                    }}
-                    selected={
-                      flowContext.context && flowContext.context.hobby === item
-                    }
-                  >
-                    <div>{item}</div>
-                  </Selection>
-                );
-              })}
+const Hobby = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "interest", direction: "prev" };
+              });
+            }}
+          >
+            이전
+          </Button>
+        </div>
+        <Grid>
+          {Object.keys(HOBBY).map((category, index1) => (
+            <div key={index1}>
+              <Category>{category}</Category>
+              <div>
+                {HOBBY[category].map((item, index2) => {
+                  return (
+                    <Selection
+                      key={index2}
+                      onClick={() => {
+                        setFlowContext((prev) => {
+                          return {
+                            ...prev,
+                            context: { ...prev.context, hobby: item },
+                          };
+                        });
+                      }}
+                      selected={
+                        flowContext.context &&
+                        flowContext.context.hobby === item
+                      }
+                    >
+                      <div>{item}</div>
+                    </Selection>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
-      </Grid>
-      <div>
-        <Button
-          onClick={() => {
-            return;
-          }}
-        >
-          내 이상형 확인하기
-        </Button>
-      </div>
-    </Container>
-  );
-};
+          ))}
+        </Grid>
+        <div>
+          <Button
+            onClick={() => {
+              return;
+            }}
+          >
+            내 이상형 확인하기
+          </Button>
+        </div>
+      </Container>
+    );
+  },
+);
 
 Hobby.displayName = "Hobby";
 

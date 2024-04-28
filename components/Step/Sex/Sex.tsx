@@ -3,44 +3,49 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const Sex = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
+const Sex = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
         <div>
-          {SEX_ITEMS.map((item, index) => {
-            return (
-              <Selection
-                key={index}
-                onClick={() => {
-                  setFlowContext((prev) => {
-                    return { ...prev, context: { ...prev.context, sex: item } };
-                  });
-                }}
-                selected={
-                  flowContext.context && flowContext.context.sex === item
-                }
-              >
-                {item}
-              </Selection>
-            );
-          })}
+          <div>
+            {SEX_ITEMS.map((item, index) => {
+              return (
+                <Selection
+                  key={index}
+                  onClick={() => {
+                    setFlowContext((prev) => {
+                      return {
+                        ...prev,
+                        context: { ...prev.context, sex: item },
+                      };
+                    });
+                  }}
+                  selected={
+                    flowContext.context && flowContext.context.sex === item
+                  }
+                >
+                  {item}
+                </Selection>
+              );
+            })}
+          </div>
+          <div>
+            <Button
+              onClick={() => {
+                setFlowContext((prev) => {
+                  return { ...prev, step: "mbti", direction: "next" };
+                });
+              }}
+            >
+              다음
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button
-            onClick={() => {
-              setFlowContext((prev) => {
-                return { ...prev, step: "mbti" };
-              });
-            }}
-          >
-            다음
-          </Button>
-        </div>
-      </div>
-    </Container>
-  );
-};
+      </Container>
+    );
+  },
+);
 
 Sex.displayName = "Sex";
 

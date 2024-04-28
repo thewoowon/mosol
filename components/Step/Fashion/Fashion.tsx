@@ -3,77 +3,81 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const Fashion = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "faceShape" };
-            });
-          }}
-        >
-          이전
-        </Button>
-      </div>
-      <Grid>
-        {flowContext.context.sex === "남자"
-          ? FASHION_STYLE["MALE"].map((item, index) => {
-              return (
-                <Selection
-                  key={index}
-                  onClick={() => {
-                    setFlowContext((prev) => {
-                      return {
-                        ...prev,
-                        context: { ...prev.context, fashion: item },
-                      };
-                    });
-                  }}
-                  selected={
-                    flowContext.context && flowContext.context.fashion === item
-                  }
-                >
-                  <div>{item}</div>
-                </Selection>
-              );
-            })
-          : FASHION_STYLE["FEMALE"].map((item, index) => {
-              return (
-                <Selection
-                  key={index}
-                  onClick={() => {
-                    setFlowContext((prev) => {
-                      return {
-                        ...prev,
-                        context: { ...prev.context, fashion: item },
-                      };
-                    });
-                  }}
-                  selected={
-                    flowContext.context && flowContext.context.fashion === item
-                  }
-                >
-                  <div>{item}</div>
-                </Selection>
-              );
-            })}
-      </Grid>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "interest" };
-            });
-          }}
-        >
-          다음
-        </Button>
-      </div>
-    </Container>
-  );
-};
+const Fashion = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "faceShape", direction: "prev" };
+              });
+            }}
+          >
+            이전
+          </Button>
+        </div>
+        <Grid>
+          {flowContext.context.sex === "남자"
+            ? FASHION_STYLE["MALE"].map((item, index) => {
+                return (
+                  <Selection
+                    key={index}
+                    onClick={() => {
+                      setFlowContext((prev) => {
+                        return {
+                          ...prev,
+                          context: { ...prev.context, fashion: item },
+                        };
+                      });
+                    }}
+                    selected={
+                      flowContext.context &&
+                      flowContext.context.fashion === item
+                    }
+                  >
+                    <div>{item}</div>
+                  </Selection>
+                );
+              })
+            : FASHION_STYLE["FEMALE"].map((item, index) => {
+                return (
+                  <Selection
+                    key={index}
+                    onClick={() => {
+                      setFlowContext((prev) => {
+                        return {
+                          ...prev,
+                          context: { ...prev.context, fashion: item },
+                        };
+                      });
+                    }}
+                    selected={
+                      flowContext.context &&
+                      flowContext.context.fashion === item
+                    }
+                  >
+                    <div>{item}</div>
+                  </Selection>
+                );
+              })}
+        </Grid>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "interest", direction: "next" };
+              });
+            }}
+          >
+            다음
+          </Button>
+        </div>
+      </Container>
+    );
+  },
+);
 
 Fashion.displayName = "Fashion";
 

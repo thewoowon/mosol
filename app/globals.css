@@ -32,7 +32,7 @@ body {
   }
 }
 
-.fade-enter {
+.fade-next-enter {
   position: absolute;
   top: 0;
   right: 0;
@@ -40,7 +40,7 @@ body {
   opacity: 0;
   transform: translateX(100%); /* 오른쪽에서 시작 */
 }
-.fade-enter-active {
+.fade-next-enter-active {
   position: absolute;
   top: 0;
   right: 0;
@@ -51,7 +51,7 @@ body {
     opacity 300ms,
     transform 300ms;
 }
-.fade-exit {
+.fade-next-exit {
   position: absolute;
   top: 0;
   right: 0;
@@ -59,7 +59,7 @@ body {
   opacity: 1;
   transform: translateX(0); /* 중앙에서 시작 */
 }
-.fade-exit-active {
+.fade-next-exit-active {
   position: absolute;
   top: 0;
   right: 0;
@@ -69,4 +69,65 @@ body {
   transition:
     opacity 300ms,
     transform 300ms;
+}
+
+.fade-prev-enter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-100%); /* 왼쪽에서 시작 */
+}
+
+.fade-prev-enter-active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 1;
+  transform: translateX(0); /* 중앙으로 이동 */
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+
+.fade-prev-exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 1;
+  transform: translateX(0); /* 중앙에서 시작 */
+}
+
+.fade-prev-exit-active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(100%); /* 오른쪽으로 이동 */
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+
+.item-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.item-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 500ms ease-in,
+    transform 500ms ease-in;
+}
+.item-exit {
+  opacity: 1;
+}
+.item-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in;
 }

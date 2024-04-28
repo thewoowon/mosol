@@ -1,4 +1,5 @@
 export type FlowContextType = {
+  direction: "next" | "prev";
   step:
     | "sex"
     | "mbti"

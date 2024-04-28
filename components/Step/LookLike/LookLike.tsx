@@ -4,97 +4,99 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 import React from "react";
 
-const LookLike = ({ setFlowContext, flowContext }: CommonStepType) => {
-  return (
-    <Container>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "mbti" };
-            });
-          }}
-        >
-          이전
-        </Button>
-      </div>
-      <Grid>
-        {flowContext.context.sex === "남자"
-          ? LOOK_LIKE["MALE"].map((item, index) => {
-              return (
-                <Selection
-                  key={index}
-                  onClick={() => {
-                    setFlowContext((prev) => {
-                      return {
-                        ...prev,
-                        context: { ...prev.context, lookLike: item.name },
-                      };
-                    });
-                  }}
-                  selected={
-                    flowContext.context &&
-                    flowContext.context.lookLike === item.name
-                  }
-                >
-                  <div>
-                    <Image
-                      src={item.src}
-                      alt={item.name}
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                  <div>{item.name}</div>
-                  <div> {item.description}</div>
-                </Selection>
-              );
-            })
-          : LOOK_LIKE["FEMALE"].map((item, index) => {
-              return (
-                <Selection
-                  key={index}
-                  onClick={() => {
-                    setFlowContext((prev) => {
-                      return {
-                        ...prev,
-                        context: { ...prev.context, lookLike: item.name },
-                      };
-                    });
-                  }}
-                  selected={
-                    flowContext.context &&
-                    flowContext.context.lookLike === item.name
-                  }
-                >
-                  <div>
-                    <Image
-                      src={item.src}
-                      alt={item.name}
-                      width={50}
-                      height={50}
-                    />
-                  </div>
-                  <div>{item.name}</div>
-                  <div> {item.description}</div>
-                </Selection>
-              );
-            })}
-      </Grid>
-      <div>
-        <Button
-          onClick={() => {
-            setFlowContext((prev) => {
-              return { ...prev, step: "height" };
-            });
-          }}
-        >
-          다음
-        </Button>
-      </div>
-    </Container>
-  );
-};
+const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
+  ({ setFlowContext, flowContext }, ref) => {
+    return (
+      <Container ref={ref}>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "mbti", direction: "prev" };
+              });
+            }}
+          >
+            이전
+          </Button>
+        </div>
+        <Grid>
+          {flowContext.context.sex === "남자"
+            ? LOOK_LIKE["MALE"].map((item, index) => {
+                return (
+                  <Selection
+                    key={index}
+                    onClick={() => {
+                      setFlowContext((prev) => {
+                        return {
+                          ...prev,
+                          context: { ...prev.context, lookLike: item.name },
+                        };
+                      });
+                    }}
+                    selected={
+                      flowContext.context &&
+                      flowContext.context.lookLike === item.name
+                    }
+                  >
+                    <div>
+                      <Image
+                        src={item.src}
+                        alt={item.name}
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <div>{item.name}</div>
+                    <div> {item.description}</div>
+                  </Selection>
+                );
+              })
+            : LOOK_LIKE["FEMALE"].map((item, index) => {
+                return (
+                  <Selection
+                    key={index}
+                    onClick={() => {
+                      setFlowContext((prev) => {
+                        return {
+                          ...prev,
+                          context: { ...prev.context, lookLike: item.name },
+                        };
+                      });
+                    }}
+                    selected={
+                      flowContext.context &&
+                      flowContext.context.lookLike === item.name
+                    }
+                  >
+                    <div>
+                      <Image
+                        src={item.src}
+                        alt={item.name}
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <div>{item.name}</div>
+                    <div> {item.description}</div>
+                  </Selection>
+                );
+              })}
+        </Grid>
+        <div>
+          <Button
+            onClick={() => {
+              setFlowContext((prev) => {
+                return { ...prev, step: "height", direction: "next" };
+              });
+            }}
+          >
+            다음
+          </Button>
+        </div>
+      </Container>
+    );
+  },
+);
 
 LookLike.displayName = "LookLike";
 
