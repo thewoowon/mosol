@@ -1,0 +1,118 @@
+import { HEIGHT_RANGE } from "@/contants/flow";
+import { CommonStepType } from "@/types";
+import styled from "@emotion/styled";
+import React from "react";
+
+const Height = ({ setFlowContext, flowContext }: CommonStepType) => {
+  return (
+    <Container>
+      <div>
+        <Button
+          onClick={() => {
+            setFlowContext((prev) => {
+              return { ...prev, step: "lookLike" };
+            });
+          }}
+        >
+          이전
+        </Button>
+      </div>
+      <Grid>
+        {flowContext.context.sex === "남자"
+          ? HEIGHT_RANGE["MALE"].map((item, index) => {
+              return (
+                <Selection
+                  key={index}
+                  onClick={() => {
+                    setFlowContext((prev) => {
+                      return {
+                        ...prev,
+                        context: { ...prev.context, height: item },
+                      };
+                    });
+                  }}
+                  selected={
+                    flowContext.context && flowContext.context.height === item
+                  }
+                >
+                  <div>{item}</div>
+                </Selection>
+              );
+            })
+          : HEIGHT_RANGE["FEMALE"].map((item, index) => {
+              return (
+                <Selection
+                  key={index}
+                  onClick={() => {
+                    setFlowContext((prev) => {
+                      return {
+                        ...prev,
+                        context: { ...prev.context, height: item },
+                      };
+                    });
+                  }}
+                  selected={
+                    flowContext.context && flowContext.context.height === item
+                  }
+                >
+                  <div>{item}</div>
+                </Selection>
+              );
+            })}
+      </Grid>
+      <div>
+        <Button
+          onClick={() => {
+            setFlowContext((prev) => {
+              return { ...prev, step: "eyeShape" };
+            });
+          }}
+        >
+          다음
+        </Button>
+      </div>
+    </Container>
+  );
+};
+
+Height.displayName = "Height";
+
+export default Height;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
+
+const Button = styled.button`
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+`;
+
+const Selection = styled.div<{ selected: boolean }>`
+  background-color: ${(props) => (props.selected ? "#ff6b6b" : "white")};
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+`;
