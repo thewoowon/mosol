@@ -31,3 +31,42 @@ body {
     text-wrap: balance;
   }
 }
+
+.fade-enter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(100%); /* 오른쪽에서 시작 */
+}
+.fade-enter-active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 1;
+  transform: translateX(0); /* 중앙으로 이동 */
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
+.fade-exit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 1;
+  transform: translateX(0); /* 중앙에서 시작 */
+}
+.fade-exit-active {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateX(-100%); /* 왼쪽으로 이동 */
+  transition:
+    opacity 300ms,
+    transform 300ms;
+}
