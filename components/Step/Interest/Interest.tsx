@@ -1,3 +1,4 @@
+import Typography from "@/components/Typography";
 import { INTEREST } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
@@ -8,21 +9,21 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <div>
-          <Button
-            onClick={() => {
-              setFlowContext((prev) => {
-                return { ...prev, step: "fashion", direction: "prev" };
-              });
-            }}
-          >
-            이전
-          </Button>
+          <Typography type="h3">함께하고 싶은 활동은?</Typography>
+          <Typography type="subtitle1">
+            가장 원하는 한가지를 선택해주세요
+          </Typography>
         </div>
         <Grid>
           {Object.keys(INTEREST).map((category, index1) => (
             <div key={index1}>
               <Category>{category}</Category>
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                }}
+              >
                 {INTEREST[category].map((item, index2) => {
                   return (
                     <Selection
@@ -31,13 +32,20 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
                         setFlowContext((prev) => {
                           return {
                             ...prev,
-                            context: { ...prev.context, interest: item },
+                            context: {
+                              ...prev.context,
+                              interest: prev.context.interest.includes(item)
+                                ? prev.context.interest.filter(
+                                    (interest) => interest !== item,
+                                  )
+                                : [...prev.context.interest, item],
+                            },
                           };
                         });
                       }}
                       selected={
                         flowContext.context &&
-                        flowContext.context.interest === item
+                        flowContext.context.interest.includes(item)
                       }
                     >
                       <div>{item}</div>
@@ -73,7 +81,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Button = styled.button`
@@ -89,9 +97,12 @@ const Button = styled.button`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   padding: 20px;
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 400px;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

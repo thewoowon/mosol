@@ -1,3 +1,4 @@
+import Typography from "@/components/Typography";
 import { EYES_TYPE } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
@@ -8,15 +9,10 @@ const EyeShape = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <div>
-          <Button
-            onClick={() => {
-              setFlowContext((prev) => {
-                return { ...prev, step: "height", direction: "prev" };
-              });
-            }}
-          >
-            이전
-          </Button>
+          <Typography type="h3">선호하는 눈매는?</Typography>
+          <Typography type="subtitle1">
+            가장 원하는 한가지를 선택해주세요
+          </Typography>
         </div>
         <Grid>
           {EYES_TYPE.map((item, index) => {
@@ -65,7 +61,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Button = styled.button`
@@ -83,6 +79,9 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 20px;
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 400px;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

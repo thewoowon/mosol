@@ -1,3 +1,4 @@
+import Typography from "@/components/Typography";
 import { HOBBY } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
@@ -8,15 +9,10 @@ const Hobby = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <div>
-          <Button
-            onClick={() => {
-              setFlowContext((prev) => {
-                return { ...prev, step: "interest", direction: "prev" };
-              });
-            }}
-          >
-            이전
-          </Button>
+          <Typography type="h3">함께하고 싶은 취미는?</Typography>
+          <Typography type="subtitle1">
+            가장 원하는 한가지를 선택해주세요
+          </Typography>
         </div>
         <Grid>
           {Object.keys(HOBBY).map((category, index1) => (
@@ -31,13 +27,20 @@ const Hobby = React.forwardRef<HTMLDivElement, CommonStepType>(
                         setFlowContext((prev) => {
                           return {
                             ...prev,
-                            context: { ...prev.context, hobby: item },
+                            context: {
+                              ...prev.context,
+                              hobby: prev.context.hobby.includes(item)
+                                ? prev.context.hobby.filter(
+                                    (hobby) => hobby !== item,
+                                  )
+                                : [...prev.context.hobby, item],
+                            },
                           };
                         });
                       }}
                       selected={
                         flowContext.context &&
-                        flowContext.context.hobby === item
+                        flowContext.context.hobby.includes(item)
                       }
                     >
                       <div>{item}</div>
@@ -71,7 +74,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Button = styled.button`
@@ -90,6 +93,9 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 400px;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

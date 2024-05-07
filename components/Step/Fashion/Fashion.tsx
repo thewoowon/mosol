@@ -1,3 +1,4 @@
+import Typography from "@/components/Typography";
 import { FASHION_STYLE } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
@@ -8,15 +9,10 @@ const Fashion = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <div>
-          <Button
-            onClick={() => {
-              setFlowContext((prev) => {
-                return { ...prev, step: "faceShape", direction: "prev" };
-              });
-            }}
-          >
-            이전
-          </Button>
+          <Typography type="h3">선호하는 패션스타일은?</Typography>
+          <Typography type="subtitle1">
+            가장 원하는 한가지를 선택해주세요
+          </Typography>
         </div>
         <Grid>
           {flowContext.context.sex === "남자"
@@ -88,7 +84,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Button = styled.button`
@@ -106,6 +102,9 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 20px;
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 400px;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`
