@@ -1,5 +1,5 @@
 {
-  "name": "my-idol",
+  "name": "mosol",
   "version": "0.1.0",
   "private": true,
   "author": {
@@ -10,8 +10,8 @@
   "description": "당신의 이상형을 아는 가장 빠른 길",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thewoowon/my-idol.git",
-    "directory": "my-idol"
+    "url": "https://github.com/thewoowon/mosol.git",
+    "directory": "mosol"
   },
   "license": "MIT",
   "main": "index.js",
@@ -32,12 +32,14 @@
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@tanstack/react-query": "^5.35.1",
     "@types/react-transition-group": "^4.4.10",
     "framer-motion": "^11.1.7",
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",
+    "react-toastify": "^10.0.5",
     "react-transition-group": "^4.4.5",
     "zustand": "^4.5.2"
   },
