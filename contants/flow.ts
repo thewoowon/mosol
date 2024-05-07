@@ -1,6 +1,12 @@
-export const SEX_ITEMS: string[] = ["남성", "여성"];
+export const SEX_ITEMS: string[] = ["남자", "여자"];
 
-export const AGE_RANGE: string[] = ["10대", "20대", "30대", "40대 이상"];
+export const AGE_RANGE: string[] = [
+  "10대",
+  "20대",
+  "30대",
+  "40대",
+  "50대 이상",
+];
 
 export const MBTI_ITEMS: {
   type: string;
@@ -9,83 +15,83 @@ export const MBTI_ITEMS: {
 }[] = [
   {
     type: "ISTJ",
-    description: "한번 시작하면 끝을 봐",
-    detail: "철저하고 계획적인 사람",
+    description: "친구보다 확실히",
+    detail: "이성으로 접근하기",
   },
   {
     type: "ISFJ",
-    description: "성실하고 온화한 협조왕",
-    detail: "다정하면서 보수적이기도 해.",
+    description: "어른스럽게 잘 챙겨",
+    detail: "주면서 밀당 잘하기",
   },
   {
     type: "INFJ",
-    description: "뛰어난 통찰력과 생각",
-    detail: "배려하는 따뜻함과 강함이 공존",
+    description: "밝고 예의바르게",
+    detail: "어른스러운 행동",
   },
   {
     type: "INTJ",
-    description: "큰 그림을 그리는 설계자",
-    detail: "조용하지만 강력한 사람",
+    description: "지적이며",
+    detail: "내면이 단단한 사람",
   },
   {
     type: "ISTP",
-    description: "시니컬하면서도 위트있어",
-    detail: "적응력 강하지만 집이 좋아",
+    description: "너무 귀찮게 안하면서",
+    detail: "티키타카 잘해주기",
   },
   {
     type: "ISFP",
-    description: "따뜻한 감성 가득",
-    detail: "다정한 천사",
+    description: "어른스럽게 행동하고",
+    detail: "잘 챙겨주기",
   },
   {
     type: "INFP",
-    description: "논리적이고 똑똑한 박사님",
-    detail: "감각적이고 예술적인",
+    description: "깊은 대화를 자주하고",
+    detail: "아껴주고 공감해주기",
   },
   {
     type: "INTP",
-    description: "도전 정신 가득 승부사",
-    detail: "뒤를 보지 않는 추진력",
+    description: "첫인상이 매우 중요하",
+    detail: "고 애교많은 스타일",
   },
   {
     type: "ESTP",
-    description: "모험을 즐기는 사업가",
-    detail: "분위기 잘띄우고 사교적",
+    description: "엄청난 매력쟁이 혹은",
+    detail: "매우 착한 사람",
   },
   {
     type: "ESFP",
-    description: "재미보장 인싸 그자체",
-    detail: "   ",
+    description: "배려심 많고 다정하고",
+    detail: "잘 챙겨주는 사랑꾼",
   },
   {
     type: "ENFP",
-    description: "열정적이고 추진력 강한 에너자이저",
-    detail: "매력넘침",
+    description: "감성적이면서 어른스",
+    detail: "럽고 잘 이끌어주기",
   },
   {
     type: "ENTP",
-    description: "드넓은 상상력, 재빠른 추진력",
-    detail: "수없이 도전하는 아이디어뱅크",
+    description: "잔소리는 절대 금지,",
+    detail: "존중하면서 칭찬하기",
   },
   {
     type: "ESTJ",
-    description: "현실적이고 확실한 리더",
-    detail: "끝장 볼때까지 밀고 가",
+    description: "여우같은 사람 또는",
+    detail: "순박한 사랑꾼",
   },
   {
     type: "ESFJ",
-    description: "사랑을 주고받는 다정함",
-    detail: "내 사람은 내가 지킨다",
+    description: "반듯하고 선한 행동,",
+    detail: "이야기 공감 잘해주기",
   },
   {
     type: "ENFJ",
-    description: "따뜻하고 매력적인 리더",
-    detail: "다정하고 뜻이 있어",
+    description: "속깊고 일 열심히",
+    detail: "하는 사람, 밀당 금지",
   },
   {
     type: "ENTJ",
-    description: "전략적이고 유능한 리더",
-    detail: "큰 꿈을 실현하는 집행가",
+    description: "한심함 금지, 자기 일",
+    detail: "알아서 잘하는 사랑꾼",
   },
 ];
 
@@ -225,129 +231,94 @@ export const LOOK_LIKE: {
   ],
   FEMALE: [
     {
-      name: "구준엽",
+      name: "이도현",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/78f5b96b-22a1-4de5-cf59-ca43c84feb00/public",
     },
     {
-      name: "전우성",
+      name: "진",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/b1687050-df19-45c5-9d83-27ff81dff300/public",
     },
     {
-      name: "이정재",
+      name: "윤두준",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/3c774b3f-3754-4b1d-e8b9-e1a394d42200/public",
     },
     {
-      name: "김민종",
+      name: "영케이",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a5c6a2a7-eb77-4dda-cb71-c217a0593600/public",
     },
     {
-      name: "김병기",
+      name: "뷔",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/09fcbb1b-6e8b-4863-06cd-c0a0e9ecfa00/public",
     },
     {
-      name: "송송송",
+      name: "현빈",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/8d915a68-f887-4ef6-5f59-b9b2fe323700/public",
     },
     {
-      name: "김산호",
+      name: "주우재",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/28ee7540-8ead-44c1-d99f-d41f98486300/public",
     },
     {
-      name: "김상경",
+      name: "서강준",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "이경영",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "송강",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "김무생",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "마동석",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "송중기",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "박두식",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "박기웅",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "박민우",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "배민영",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "변우식",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "변희봉",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "송강호",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "서인국",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "성동일",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "성유빈",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a6de261c-ec00-412a-83f2-c9e4646eee00/public",
     },
     {
       name: "손석구",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/acfead32-c4e1-44fa-6d9f-f989af9fb300/public",
     },
     {
-      name: "손진영F",
+      name: "정국",
       description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/e5f4c675-cd08-4d07-089b-f80146a0f700/public",
+    },
+    {
+      name: "최우식",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/034f58a4-dc50-4252-0278-90de0ef56600/public",
+    },
+    {
+      name: "이제훈",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/07399d26-3c49-4239-c15e-055d1a4cbf00/public",
+    },
+    {
+      name: "강하늘",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/3d9ade94-9136-4f95-cd78-ab5377977700/public",
+    },
+    {
+      name: "원필",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/efdf64cb-9e17-4218-ae5b-fe956d28b900/public",
+    },
+    {
+      name: "남주혁",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/c3bb77d4-c3f4-4fdc-b585-675e4369d400/public",
+    },
+    {
+      name: "차은우",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/107304a2-017c-462f-fca6-8529652a0700/public",
+    },
+    {
+      name: "박보검",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a26b584a-32ba-43c3-b360-5cf6c3f4ef00/public",
+    },
+    {
+      name: "송강",
+      description: "송강이란 무엇인가",
+      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/11425fd7-fb28-4969-749e-1930b0f4fa00/public",
     },
   ],
 };
