@@ -1,7 +1,19 @@
+export enum Step {
+  sexAndAge = "sexAndAge",
+  mbti = "mbti",
+  lookLike = "lookLike",
+  height = "height",
+  eyeShape = "eyeShape",
+  faceShape = "faceShape",
+  fashion = "fashion",
+  interest = "interest",
+  hobby = "hobby",
+}
+
 export type FlowContextType = {
   direction: "next" | "prev";
   step:
-    | "sex"
+    | "sexAndAge"
     | "mbti"
     | "lookLike"
     | "height"
@@ -10,16 +22,18 @@ export type FlowContextType = {
     | "fashion"
     | "interest"
     | "hobby";
+  index: number;
   context: {
     sex: string | null;
+    age: string | null;
     mbti: string | null;
     lookLike: string | null;
     height: string | null;
     eyeShape: string | null;
     faceShape: string | null;
     fashion: string | null;
-    interest: string | null;
-    hobby: string | null;
+    interest: string[];
+    hobby: string[];
   };
 };
 
