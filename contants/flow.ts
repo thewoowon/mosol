@@ -193,41 +193,6 @@ export const LOOK_LIKE: {
       description: "송강이란 무엇인가",
       src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
     },
-    {
-      name: "고소영",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "전지현",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "권민아",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "길은혜",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "김가은",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "김고은",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
-    {
-      name: "길혜연",
-      description: "송강이란 무엇인가",
-      src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/684b8a5f-da61-4bbb-9d8d-390aad996000/public",
-    },
   ],
   FEMALE: [
     {
@@ -358,17 +323,23 @@ export const FACE_SHAPE: string[] = [
   "토끼상",
   "두부상",
   "늑대상",
-  "햄스터상",
+  "꼬부기상",
   "사슴상",
   "사막여우상",
-  "꼬부기상",
 ];
 
 export const FASHION_STYLE: {
   [key: string]: string[];
 } = {
-  MALE: ["미니멀", "시티보이", "컨템포러리", "아메카지", "스트릿", "캐주얼"],
-  FEMALE: ["미니멀", "놈코어", "그런지", "프레피", "스트릿", "페미닌"],
+  MALE: [
+    "미니멀리즘",
+    "애슬레저",
+    "스트릿",
+    "테일러링",
+    "보헤미안",
+    "유니섹스",
+  ],
+  FEMALE: ["미니멀리즘", "로맨틱", "스트릿", "레트로", "보헤미안", "프레피"],
 };
 
 export const FAVORITE_COLOR: string[] = [
@@ -390,19 +361,32 @@ export const FAVORITE_COLOR: string[] = [
 export const INTEREST: {
   [key: string]: string[];
 } = {
-  ART: ["영화", "콘서트", "뮤지컬", "전시", "출사", "독서"],
-  ENTERTAINMENT: [
-    "게임",
-    "노래",
-    "밴드",
-    "유튜브",
-    "댄스",
-    "블로그",
-    "디제잉",
-    "덕질",
+  문화예술: ["영화", "콘서트", "뮤지컬", "전시", "출사", "독서"],
+  스포츠: [
+    "야구",
+    "축구",
+    "골프",
+    "농구",
+    "러닝",
+    "헬스",
+    "수영",
+    "테니스",
+    "배드민턴",
+    "사이클",
+    "탁구",
+    "볼링",
+    "스키/보드",
+    "서핑",
   ],
-  MEALS: ["와인", "위스키", "커피", "요리", "맛집투어"],
-  BEAUTY: ["메이크업", "헤어", "네일", "피부관리", "피트니스"],
+  체험: [
+    "캠핑",
+    "드라이브",
+    "원데이클래스",
+    "낚시",
+    "국내여행",
+    "해외여행",
+    "맛집투어",
+  ],
 };
 // 취미
 export const HOBBY: {
