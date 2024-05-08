@@ -5,19 +5,27 @@ import styled from "@emotion/styled";
 const Drawer = () => {
   const { isOpen, toggleDrawer, node } = useDrawerStore();
 
+  if (!node) return null;
+
+  if (!isOpen) {
+    return null;
+  }
+
   return (
     <Container>
-      <button onClick={toggleDrawer}>Toggle Drawer</button>
+      <BackgroundLayer />
       <div
         style={{
-          position: "fixed",
-          top: 0,
-          left: isOpen ? 0 : "-250px",
-          width: "250px",
-          height: "100vh",
-          backgroundColor: "#f1f1f1",
+          position: "absolute",
+          bottom: isOpen ? 0 : "-250px",
+          width: "100%",
+          height: "450px",
+          backgroundColor: "white",
           padding: "20px",
           transition: "left 0.3s ease-in-out",
+          zIndex: 100,
+          borderTopLeftRadius: "20px",
+          borderTopRightRadius: "20px",
         }}
       >
         {node}
@@ -29,11 +37,19 @@ const Drawer = () => {
 export default Drawer;
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+`;
+
+const BackgroundLayer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
   opacity: 0.5;
-  background-color: #000;
 `;
