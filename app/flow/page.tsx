@@ -289,7 +289,62 @@ const FlowPage = () => {
         {flowContext.step === "lookLike" && (
           <BottomButton
             onClick={() => {
-              setNode(<div></div>);
+              setNode(
+                <div>
+                  <div
+                    style={{
+                      width: "100%",
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div>좋아하는 인물 입력</div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        width: "24px",
+                        height: "24px",
+                        right: "24px",
+                      }}
+                      onClick={() => {
+                        toggleDrawer();
+                      }}
+                    >
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M15 1L1 15"
+                          stroke="#333333"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M15 15L1 1"
+                          stroke="#333333"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <div>이상형 이름을 입력해주세요.</div>
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="이상형 이름을 입력해주세요."
+                      />
+                    </div>
+                  </div>
+                </div>,
+              );
               toggleDrawer();
             }}
             label={"이중에 없어요!"}

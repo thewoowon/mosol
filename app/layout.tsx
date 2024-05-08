@@ -5,6 +5,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useEffect } from "react";
 import Drawer from "@/components/Drawer";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import Analytics from "@/components/Analytics";
+import * as gtag from "@/lib/gtag";
 
 export default function RootLayout({
   children,
@@ -166,6 +169,7 @@ export default function RootLayout({
         /> */}
       </head>
       <body>
+        <Analytics />
         <QueryClientProvider client={queryClient}>
           {/* <SideBar /> */}
           <main
@@ -186,9 +190,11 @@ export default function RootLayout({
             }}
           >
             {children}
+            <Drawer />
           </main>
-          <Drawer />
         </QueryClientProvider>
+        <GoogleAnalytics gaId={gtag.GA_TRACKING_ID || ""} />
+        <GoogleTagManager gtmId={gtag.GTM_TRACKING_ID || ""} />
         <ToastContainer
           position="top-center"
           autoClose={2000}
