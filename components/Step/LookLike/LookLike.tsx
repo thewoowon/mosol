@@ -1,4 +1,3 @@
-import { BottomButton } from "@/components/Button";
 import Typography from "@/components/Typography";
 import { LOOK_LIKE } from "@/contants/flow";
 import { CommonStepType } from "@/types";
@@ -64,6 +63,19 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                     <Selection
                       key={index}
                       onClick={() => {
+                        const randomString = [
+                          "저도 좋아요",
+                          "매력 만점~",
+                          "힙하다 힙해",
+                          "홀리댐!",
+                        ];
+                        toast.success(
+                          `👍 ${item.name}! ${
+                            randomString[
+                              Math.floor(Math.random() * randomString.length)
+                            ]
+                          }`,
+                        );
                         setFlowContext((prev) => {
                           return {
                             ...prev,
@@ -100,22 +112,6 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                 })}
           </Grid>
         </WidthHeightBlock>
-        <WidthBlock>
-          <BottomButton
-            onClick={() => {
-              // MBTI를 선택하지 않았을 때
-              if (!flowContext.context.mbti) {
-                toast.warn("🦄 닮은꼴을 선택해주세요!");
-                return;
-              }
-
-              setFlowContext((prev) => {
-                return { ...prev, step: "height", direction: "next" };
-              });
-            }}
-            label="다음"
-          />
-        </WidthBlock>
         <div
           style={{
             display: "none",
@@ -166,6 +162,30 @@ const Selection = styled.div<{ selected: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  ${(props) =>
+    props.selected &&
+    `
+    &::after {
+      content: "🩷";
+      position: absolute;
+      font-size: 36px;
+      animation: bounce 0.5s infinite;
+
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+    }
+  `}
 `;
 
 const WidthBlock = styled.div<{

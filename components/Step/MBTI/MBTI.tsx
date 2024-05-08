@@ -1,10 +1,8 @@
-import { BottomButton } from "@/components/Button";
 import Typography from "@/components/Typography";
 import { MBTI_ITEMS } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
-import { toast } from "react-toastify";
 
 const MBTI = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
@@ -53,22 +51,6 @@ const MBTI = React.forwardRef<HTMLDivElement, CommonStepType>(
             })}
           </Grid>
         </WidthHeightBlock>
-        <WidthBlock>
-          <BottomButton
-            onClick={() => {
-              // MBTI를 선택하지 않았을 때
-              if (!flowContext.context.mbti) {
-                toast.warn("🦄 MBTI을 선택해주세요!");
-                return;
-              }
-
-              setFlowContext((prev) => {
-                return { ...prev, step: "lookLike", direction: "next" };
-              });
-            }}
-            label="다음"
-          />
-        </WidthBlock>
       </Container>
     );
   },
@@ -117,7 +99,7 @@ const Selection = styled.div<{ selected: boolean }>`
   padding: 16px 13px 10px;
   border-radius: 4px;
   border: solid 1px #d2d5d6;
-  font-family: Pretendard;
+  font-family: Pretendard Variable;
   font-size: 16px;
   font-weight: 500;
   display: flex;

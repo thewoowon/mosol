@@ -40,7 +40,22 @@ const StyledTypography = styled.div<{
     | "overline";
   color?: string;
 }>`
-  font-family: "Noto Sans KR", sans-serif;
+  font-family:
+    "Pretendard Variable",
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    "Helvetica Neue",
+    "Segoe UI",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    sans-serif !important;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.00938em;

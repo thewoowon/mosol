@@ -8,45 +8,46 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
     return (
       <Container ref={ref}>
-        <div>
+        <WidthBlock gap={6}>
           <Typography type="h3">선호하는 얼굴상은?</Typography>
           <Typography type="subtitle1">
             가장 원하는 한가지를 선택해주세요
           </Typography>
-        </div>
-        <Grid>
-          {FACE_SHAPE.map((item, index) => {
-            return (
-              <Selection
-                key={index}
-                onClick={() => {
-                  setFlowContext((prev) => {
-                    return {
-                      ...prev,
-                      context: { ...prev.context, faceShape: item },
-                    };
-                  });
-                }}
-                selected={
-                  flowContext.context && flowContext.context.faceShape === item
-                }
-              >
-                <div>{item}</div>
-              </Selection>
-            );
-          })}
-        </Grid>
-        <div>
-          <Button
-            onClick={() => {
-              setFlowContext((prev) => {
-                return { ...prev, step: "fashion", direction: "next" };
-              });
-            }}
-          >
-            다음
-          </Button>
-        </div>
+        </WidthBlock>
+        <WidthHeightBlock>
+          <Grid>
+            {FACE_SHAPE.map((item, index) => {
+              return (
+                <Selection
+                  key={index}
+                  onClick={() => {
+                    setFlowContext((prev) => {
+                      return {
+                        ...prev,
+                        context: { ...prev.context, faceShape: item },
+                      };
+                    });
+                  }}
+                  selected={
+                    flowContext.context &&
+                    flowContext.context.faceShape === item
+                  }
+                >
+                  <div
+                    style={{
+                      width: "55px",
+                      height: "53px",
+                      borderRadius: "50%",
+                      backgroundColor: "white",
+                      overflow: "hidden",
+                    }}
+                  ></div>
+                  <div>{item}</div>
+                </Selection>
+              );
+            })}
+          </Grid>
+        </WidthHeightBlock>
       </Container>
     );
   },
@@ -58,41 +59,73 @@ export default FaceShape;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
   height: 100%;
-`;
-
-const Button = styled.button`
-  background-color: #ff6b6b;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
+  width: 100%;
+  padding: 56px 0 0 0;
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
   overflow-y: auto;
-  min-height: 400px;
-  max-height: 400px;
+  width: 100%;
+  height: auto;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`
-  background-color: ${(props) => (props.selected ? "#ff6b6b" : "white")};
-  padding: 10px 20px;
-  border-radius: 5px;
+  background-color: ${(props) => (props.selected ? "#242729" : "#f5f6f8")};
   cursor: pointer;
-  font-size: 16px;
-  margin-top: 20px;
+  font-size: 14px;
+  width: 100%;
+  height: 104px;
+  border-radius: 4px;
+  border: solid 1px #d2d5d6;
+  font-family: Pretendard Variable;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) => (props.selected ? "white" : "#242729")};
+  gap: 12px;
+`;
 
-  &:hover {
-    background-color: #e0e0e0;
+const WidthBlock = styled.div<{
+  gap?: number;
+}>`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: ${(props) => props.gap || 16}px;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: #d2d5d6;
+`;
+
+const WidthHeightBlock = styled.div<{
+  gap?: number;
+}>`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: ${(props) => props.gap || 16}px;
+  overflow-y: auto;
+  padding: 40px 0 14px 0;
+  &::-webkit-scrollbar {
+    display: none;
   }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;

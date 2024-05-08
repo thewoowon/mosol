@@ -1,10 +1,8 @@
-import { BottomButton } from "@/components/Button";
 import Typography from "@/components/Typography";
 import { HEIGHT_RANGE } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
-import { toast } from "react-toastify";
 
 const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
@@ -59,22 +57,6 @@ const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
                 );
               })}
         </WidthHeightBlock>
-        <WidthBlock>
-          <BottomButton
-            onClick={() => {
-              // 키를 선택하지 않았을 때
-              if (!flowContext.context.height) {
-                toast.warn("🦄 키를 선택해주세요!");
-                return;
-              }
-
-              setFlowContext((prev) => {
-                return { ...prev, step: "eyeShape", direction: "next" };
-              });
-            }}
-            label="다음"
-          />
-        </WidthBlock>
       </Container>
     );
   },

@@ -1,11 +1,9 @@
-import { BottomButton } from "@/components/Button";
 import RadioButton from "@/components/RadioButton";
 import Typography from "@/components/Typography";
 import { AGE_RANGE, SEX_ITEMS } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
-import { toast } from "react-toastify";
 
 const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
@@ -19,7 +17,7 @@ const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
             이상형 결과를 위해 활용됩니다
           </Typography>
         </WidthBlock>
-        <WidthBlock gap={84}>
+        <WidthHeightBlock gap={84}>
           <WidthBlock>
             <Typography type="h5">성별</Typography>
             <RadioButton
@@ -65,28 +63,7 @@ const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
               })}
             </Grid>
           </WidthBlock>
-        </WidthBlock>
-        <WidthBlock>
-          <BottomButton
-            onClick={() => {
-              // 성별과 나이를 선택하지 않았을 때
-              if (!flowContext.context.sex) {
-                toast.warn("🦄 성별을 선택해주세요!");
-                return;
-              }
-
-              if (!flowContext.context.age) {
-                toast.warn("🦄 나이를 선택해주세요!");
-                return;
-              }
-
-              setFlowContext((prev) => {
-                return { ...prev, step: "mbti", direction: "next" };
-              });
-            }}
-            label="다음"
-          />
-        </WidthBlock>
+        </WidthHeightBlock>
       </Container>
     );
   },
@@ -135,4 +112,23 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
+`;
+
+const WidthHeightBlock = styled.div<{
+  gap?: number;
+}>`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: ${(props) => props.gap || 16}px;
+  overflow-y: auto;
+  padding: 40px 0 14px 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
