@@ -13,7 +13,6 @@ customAxios.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.error("error", error);
     if (error.response.data.code == 950) {
       window.location.replace("/auth/kakao");
     }

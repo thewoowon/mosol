@@ -1,11 +1,12 @@
 "use client";
 
 import { BottomButton } from "@/components/Button";
+import Typography from "@/components/Typography";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+const WaitPage = () => {
   const router = useRouter();
   return (
     <Container>
@@ -16,14 +17,31 @@ export default function Home() {
           alignItems: "center",
           width: "100%",
           flex: 1,
+          flexDirection: "column",
+          gap: "6px",
         }}
       >
         <Image
-          src="/images/svgs/main_logo.svg"
+          src="/images/svgs/heart.svg"
           alt="main"
-          width={280}
-          height={243}
+          width={100}
+          height={85}
+          style={{
+            marginBottom: "8px",
+          }}
         />
+        <Typography type="h3">준비중..</Typography>
+        <Typography type="subtitle1" textAlign="center">
+          <span
+            style={{
+              fontWeight: "bold",
+            }}
+          >
+            이런 사람은 안돼
+          </span>
+          는 준비 중이에요
+          <br /> 빠른 시일내에 보여드릴게요 :)
+        </Typography>
       </div>
       <Flex flexDirection="column">
         <BottomButton
@@ -31,26 +49,22 @@ export default function Home() {
             // /flow로 이동
             router.push("/flow");
           }}
-          label="이런 사람이 좋아"
-        />
-        <BottomButton
-          onClick={() => {
-            // 준비 중입니다.
-            router.push("/wait");
-          }}
-          label="이런 사람은 안돼"
+          label="이런 사람이 좋아 테스트하기"
         />
       </Flex>
     </Container>
   );
-}
+};
+
+WaitPage.displayName = "WaitPage";
+
+export default WaitPage;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #111111;
   padding: 56px 16px;
   width: 100%;
   height: 100%;

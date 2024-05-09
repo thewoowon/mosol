@@ -8,6 +8,8 @@ import Drawer from "@/components/Drawer";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import Analytics from "@/components/Analytics";
 import * as gtag from "@/lib/gtag";
+import Modal from "@/components/Modal";
+import Loader from "@/components/Loader";
 
 export default function RootLayout({
   children,
@@ -191,6 +193,8 @@ export default function RootLayout({
           >
             {children}
             <Drawer />
+            <Modal />
+            <Loader />
           </main>
         </QueryClientProvider>
         <GoogleAnalytics gaId={gtag.GA_TRACKING_ID || ""} />

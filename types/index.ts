@@ -8,6 +8,7 @@ export enum Step {
   fashion = "fashion",
   interest = "interest",
   hobby = "hobby",
+  result = "result",
 }
 
 export type FlowContextType = {
@@ -21,7 +22,8 @@ export type FlowContextType = {
     | "faceShape"
     | "fashion"
     | "interest"
-    | "hobby";
+    | "hobby"
+    | "result";
   index: number;
   context: {
     sex: string | null;
@@ -34,6 +36,10 @@ export type FlowContextType = {
     fashion: string | null;
     interest: string[];
     hobby: string[];
+    result: {
+      id: number;
+      picture: string;
+    };
   };
 };
 

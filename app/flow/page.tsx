@@ -9,17 +9,19 @@ import {
   Interest,
   // Hobby,
   MBTI,
+  Result,
 } from "@/components/Step";
 import { FlowContextType, Step } from "@/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProgressBar from "@/components/ProgressBar";
 import styled from "@emotion/styled";
 import { BottomButton } from "@/components/Button";
 import { toast } from "react-toastify";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import customAxios from "@/lib/axios";
-import { useDrawerStore } from "@/stores/global";
+import { useDrawerStore, useLoaderStore, useModalStore } from "@/stores/global";
+import { useRouter } from "next/navigation";
 
 const stepSequence = [
   "sexAndAge",
@@ -30,9 +32,11 @@ const stepSequence = [
   "faceShape",
   "fashion",
   "interest",
+  "result",
 ];
 
 const FlowPage = () => {
+  const router = useRouter();
   const [flowContext, setFlowContext] = useState<FlowContextType>({
     direction: "next",
     step: "sexAndAge",
@@ -48,10 +52,16 @@ const FlowPage = () => {
       fashion: null,
       interest: [],
       hobby: [],
+      result: {
+        id: 0,
+        picture: "",
+      },
     },
   });
 
-  const { toggleDrawer, setNode } = useDrawerStore();
+  const { toggleDrawer } = useDrawerStore();
+  const { toggleModal } = useModalStore();
+  const { toggleLoader } = useLoaderStore();
 
   const getComponent = (step: string) => {
     const components: {
@@ -120,6 +130,13 @@ const FlowPage = () => {
       //     flowContext={flowContext}
       //   />
       // ),
+      result: (
+        <Result
+          key={step}
+          setFlowContext={setFlowContext}
+          flowContext={flowContext}
+        />
+      ),
     };
 
     return components[step] || null;
@@ -128,6 +145,14 @@ const FlowPage = () => {
   const handleBack = () => {
     const currentIndex = stepSequence.indexOf(flowContext.step);
     if (currentIndex === 0) {
+      toggleModal({
+        isOpen: true,
+        title: "이상형 생성을 종료하시겠어요?",
+        description: "입력한 정보가 모두 사라집니다.",
+        onConfirm: () => {
+          router.push("/");
+        },
+      });
       return;
     }
 
@@ -208,143 +233,127 @@ const FlowPage = () => {
         },
       }).then((res: any) => res.data);
     },
-    onSuccess: (data: any) => {
-      console.log(data);
-      if (data.code === "200") {
+    onSuccess: (response: any) => {
+      const { code, data } = response;
+      if (code === "200") {
         toast.success("🎉 이상형 생성에 성공했어요!");
+        toggleLoader();
+        setFlowContext((prev) => {
+          return {
+            ...prev,
+            context: {
+              ...prev.context,
+              result: {
+                id: data.id,
+                picture: data.picture,
+              },
+            },
+            step: "result" as Step,
+            direction: "next",
+          };
+        });
       } else {
         toast.error("😭 이상형 생성에 실패했어요... 다시 시도해 주세요");
+        toggleLoader();
       }
     },
     onError: () => {
       toast.error("😭 이상형 생성에 실패했어요... 다시 시도해 주세요");
+      toggleLoader();
     },
   });
 
+  useEffect(() => {
+    console.log(flowContext.step);
+  }, [flowContext.step]);
+
   return (
-    <Container>
-      <Navigation>
-        <BackArrow onClick={handleBack}>
-          <svg
-            width="9"
-            height="16"
-            viewBox="0 0 9 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 15L1 8L8 1"
-              stroke="#333333"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+    <Container
+      backgroundColor={flowContext.step !== "result" ? "#ffffff" : "#242729"}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          width: "100%",
+          flex: 1,
+        }}
+      >
+        {flowContext.step !== "result" && (
+          <Navigation>
+            <BackArrow onClick={handleBack}>
+              <svg
+                width="9"
+                height="16"
+                viewBox="0 0 9 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 15L1 8L8 1"
+                  stroke="#333333"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </BackArrow>
+            <ProgressBar
+              gauge={
+                ((stepSequence.indexOf(flowContext.step) + 1) /
+                  stepSequence.length) *
+                100
+              }
             />
-          </svg>
-        </BackArrow>
-        <ProgressBar
-          gauge={
-            ((stepSequence.indexOf(flowContext.step) + 1) /
-              stepSequence.length) *
-            100
-          }
-        />
-      </Navigation>
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={flowContext.step}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            width: "100%",
-          }}
-        >
-          {getComponent(flowContext.step)}
-        </motion.div>
-      </AnimatePresence>
+          </Navigation>
+        )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={flowContext.step}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              flex: 1,
+            }}
+          >
+            {getComponent(flowContext.step)}
+          </motion.div>
+        </AnimatePresence>
+      </div>
       <WidthBlock>
-        <BottomButton
-          onClick={() => {
-            if (!validation()) return;
-            // 마지막 단계일 때
-            if (flowContext.step === "interest") {
-              createIdolMutation.mutate();
-              return;
-            }
-
-            const currentIndex = stepSequence.indexOf(flowContext.step);
-
-            const nextStep = stepSequence[currentIndex + 1] as string;
-            setFlowContext((prev) => {
-              return { ...prev, step: nextStep as Step, direction: "next" };
-            });
-          }}
-          label={flowContext.step === "interest" ? "결과 보기" : "다음"}
-        />
-        {flowContext.step === "lookLike" && (
+        {flowContext.step !== "result" && (
           <BottomButton
             onClick={() => {
-              setNode(
-                <div>
-                  <div
-                    style={{
-                      width: "100%",
-                      position: "relative",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div>좋아하는 인물 입력</div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        width: "24px",
-                        height: "24px",
-                        right: "24px",
-                      }}
-                      onClick={() => {
-                        toggleDrawer();
-                      }}
-                    >
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M15 1L1 15"
-                          stroke="#333333"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M15 15L1 1"
-                          stroke="#333333"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <div>
-                    <div>이상형 이름을 입력해주세요.</div>
-                    <div>
-                      <input
-                        type="text"
-                        placeholder="이상형 이름을 입력해주세요."
-                      />
-                    </div>
-                  </div>
-                </div>,
-              );
+              if (!validation()) return;
+              // 마지막 단계일 때
+              if (flowContext.step === "interest") {
+                createIdolMutation.mutate();
+                toggleLoader();
+                return;
+              }
+
+              const currentIndex = stepSequence.indexOf(flowContext.step);
+
+              const nextStep = stepSequence[currentIndex + 1] as string;
+              setFlowContext((prev) => {
+                return { ...prev, step: nextStep as Step, direction: "next" };
+              });
+            }}
+            label={flowContext.step === "interest" ? "완료" : "다음"}
+          />
+        )}
+        {flowContext.step === "lookLike" && (
+          <BottomButton
+            skeleton={true}
+            onClick={() => {
               toggleDrawer();
             }}
             label={"이중에 없어요!"}
@@ -357,14 +366,17 @@ const FlowPage = () => {
 
 export default FlowPage;
 
-const Container = styled.div`
+const Container = styled.div<{
+  backgroundColor?: string;
+}>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 100%;
   padding: 56px 16px;
   width: 100%;
+  background-color: ${(props) => props.backgroundColor || "#242729"};
 `;
 
 const Navigation = styled.div`
