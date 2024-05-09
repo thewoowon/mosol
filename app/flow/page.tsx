@@ -263,9 +263,9 @@ const FlowPage = () => {
     },
   });
 
-  useEffect(() => {
-    console.log(flowContext.step);
-  }, [flowContext.step]);
+  // useEffect(() => {
+  //   console.log(flowContext.step);
+  // }, [flowContext.step]);
 
   return (
     <Container

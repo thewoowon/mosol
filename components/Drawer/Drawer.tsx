@@ -73,14 +73,14 @@ const Drawer = () => {
                   <path
                     d="M15 1L1 15"
                     stroke="#333333"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                   <path
                     d="M15 15L1 1"
                     stroke="#333333"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </svg>
               </div>

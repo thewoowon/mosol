@@ -41,6 +41,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
               alt="나의 이상형"
               width={250}
               height={250}
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
             />
           </div>
           <Ol>
@@ -227,6 +228,8 @@ const LeftSide = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-weight: normal;
+  color: black;
 `;
 
 const RightSide = styled.div`
@@ -234,4 +237,5 @@ const RightSide = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-weight: bold;
+  color: black;
 `;
