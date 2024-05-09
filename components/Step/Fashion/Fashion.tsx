@@ -65,7 +65,7 @@ const Fashion = React.forwardRef<HTMLDivElement, CommonStepType>(
                         }}
                       >
                         <Image
-                          src={maleFashionList[index]}
+                          src={femaleFashionList[index]}
                           alt={item}
                           fill
                           sizes="100%"

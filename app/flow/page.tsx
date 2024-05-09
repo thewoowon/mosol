@@ -222,7 +222,7 @@ const FlowPage = () => {
         url: "/result/saveResult",
         data: {
           age: flowContext.context.age,
-          sex: flowContext.context.sex,
+          sex: flowContext.context.sex === "남자" ? "여자" : "남자",
           mbti: flowContext.context.mbti,
           lookLike: flowContext.context.lookLike,
           height: flowContext.context.height,
