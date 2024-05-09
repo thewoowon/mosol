@@ -18,7 +18,14 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
         <WidthHeightBlock>
           <Grid>
             {Object.keys(INTEREST).map((category, index1) => (
-              <div key={index1}>
+              <div
+                key={index1}
+                style={{
+                  borderBottom: "1px solid #d2d5d6",
+                  paddingBottom: "16px",
+                  marginBottom: "20px",
+                }}
+              >
                 <Category>{category}</Category>
                 <div
                   style={{
@@ -81,9 +88,9 @@ export default Interest;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   width: 100%;
   padding: 56px 0 0 0;
 `;
@@ -145,20 +152,12 @@ const WidthHeightBlock = styled.div<{
   align-items: flex-start;
   justify-content: center;
   gap: ${(props) => props.gap || 16}px;
-  overflow-y: auto;
   padding: 40px 0 14px 0;
+  overflow: auto;
+  height: calc(100vh - 378px);
   &::-webkit-scrollbar {
     display: none;
   }
   -ms-overflow-style: none;
   scrollbar-width: none;
-`;
-
-const Tag = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 9px 16px;
-  border-radius: 22px;
-  background-color: #242729;
 `;

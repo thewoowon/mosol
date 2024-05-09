@@ -16,7 +16,7 @@ const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
         </WidthBlock>
         <WidthHeightBlock>
           {flowContext.context.sex === "남자"
-            ? HEIGHT_RANGE["MALE"].map((item, index) => {
+            ? HEIGHT_RANGE["FEMALE"].map((item, index) => {
                 return (
                   <Selection
                     key={index}
@@ -36,7 +36,7 @@ const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
                   </Selection>
                 );
               })
-            : HEIGHT_RANGE["FEMALE"].map((item, index) => {
+            : HEIGHT_RANGE["MALE"].map((item, index) => {
                 return (
                   <Selection
                     key={index}
@@ -69,11 +69,12 @@ export default Height;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   width: 100%;
   padding: 56px 0 0 0;
+  position: relative;
 `;
 
 const Grid = styled.div`
@@ -125,7 +126,8 @@ const WidthHeightBlock = styled.div<{
   align-items: center;
   justify-content: flex-start;
   gap: ${(props) => props.gap || 12}px;
-  overflow-y: auto;
+  overflow: auto;
+  height: calc(100vh - 378px);
   padding: 40px 0 14px 0;
   &::-webkit-scrollbar {
     display: none;

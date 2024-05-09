@@ -95,7 +95,6 @@ const Grid = styled.div`
   padding: 20px;
   overflow-y: auto;
   min-height: 400px;
-  max-height: 400px;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

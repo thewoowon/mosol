@@ -60,11 +60,12 @@ export default FaceShape;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   width: 100%;
   padding: 56px 0 0 0;
+  position: relative;
 `;
 
 const Grid = styled.div`
@@ -105,12 +106,6 @@ const WidthBlock = styled.div<{
   gap: ${(props) => props.gap || 16}px;
 `;
 
-const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #d2d5d6;
-`;
-
 const WidthHeightBlock = styled.div<{
   gap?: number;
 }>`
@@ -121,8 +116,9 @@ const WidthHeightBlock = styled.div<{
   align-items: center;
   justify-content: flex-start;
   gap: ${(props) => props.gap || 16}px;
-  overflow-y: auto;
   padding: 40px 0 14px 0;
+  overflow: auto;
+  height: calc(100vh - 378px);
   &::-webkit-scrollbar {
     display: none;
   }

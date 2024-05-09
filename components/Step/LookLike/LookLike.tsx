@@ -112,17 +112,6 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                 })}
           </Grid>
         </WidthHeightBlock>
-        <div
-          style={{
-            display: "none",
-          }}
-        >
-          {/* 모달 */}
-          <div>
-            <Typography type="body1">좋아하는 인물 입력</Typography>
-          </div>
-          <Typography type="body1">이상형의 이름을 입력해주세요.</Typography>
-        </div>
       </Container>
     );
   },
@@ -135,11 +124,12 @@ export default LookLike;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   width: 100%;
   padding: 56px 0 0 0;
+  position: relative;
 `;
 
 const Grid = styled.div`
@@ -149,8 +139,6 @@ const Grid = styled.div`
   overflow-y: auto;
   width: 100%;
   height: 100%;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`
@@ -203,14 +191,15 @@ const WidthHeightBlock = styled.div<{
   gap?: number;
 }>`
   width: 100%;
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   gap: ${(props) => props.gap || 16}px;
-  overflow-y: auto;
   padding: 40px 0 14px 0;
+  overflow: auto;
+  height: calc(100vh - 378px);
   &::-webkit-scrollbar {
     display: none;
   }

@@ -9,7 +9,7 @@ const MBTI = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">좋아하는 스타일은?</Typography>
+          <Typography type="h3">좋아하는 성격은?</Typography>
           <Typography type="subtitle1">
             가장 원하는 한가지를 선택해주세요
           </Typography>
@@ -63,11 +63,12 @@ export default MBTI;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  height: 100%;
+  flex: 1;
   width: 100%;
   padding: 56px 0 0 0;
+  position: relative;
 `;
 
 const WidthBlock = styled.div<{
@@ -93,9 +94,10 @@ const Grid = styled.div`
 const Selection = styled.div<{ selected: boolean }>`
   background-color: ${(props) => (props.selected ? "#242729" : "#f5f6f8")};
   cursor: pointer;
-  font-size: 12px;
+
   width: 100%;
-  height: 123px;
+  height: 100%;
+  max-height: 123px;
   padding: 16px 13px 10px;
   border-radius: 4px;
   border: solid 1px #d2d5d6;
@@ -119,14 +121,15 @@ const WidthHeightBlock = styled.div<{
   gap?: number;
 }>`
   width: 100%;
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   gap: ${(props) => props.gap || 16}px;
-  overflow-y: auto;
   padding: 40px 0 14px 0;
+  overflow: auto;
+  height: calc(100vh - 378px);
   &::-webkit-scrollbar {
     display: none;
   }

@@ -10,9 +10,7 @@ const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">
-            성별과 나이를 <br /> 알려주세요.
-          </Typography>
+          <Typography type="h3">성별과 나이를 알려주세요.</Typography>
           <Typography type="subtitle1">
             이상형 결과를 위해 활용됩니다
           </Typography>
@@ -76,7 +74,7 @@ export default SexAndAge;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
   height: 100%;
   width: 100%;

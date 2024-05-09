@@ -16,10 +16,15 @@ type TypographyProps = {
     | "overline";
   children: React.ReactNode;
   color?: string;
+  textAlign?: "left" | "center" | "right";
 };
 
-const Typography = ({ type, children, color }: TypographyProps) => {
-  return <StyledTypography type={type}>{children}</StyledTypography>;
+const Typography = ({ type, children, color, textAlign }: TypographyProps) => {
+  return (
+    <StyledTypography type={type} color={color} textAlign={textAlign}>
+      {children}
+    </StyledTypography>
+  );
 };
 
 export default Typography;
@@ -39,6 +44,7 @@ const StyledTypography = styled.div<{
     | "caption"
     | "overline";
   color?: string;
+  textAlign?: "left" | "center" | "right";
 }>`
   font-family:
     "Pretendard Variable",
@@ -120,4 +126,5 @@ const StyledTypography = styled.div<{
     }
   }};
   color: ${(props) => props.color || "black"};
+  text-align: ${(props) => props.textAlign || "left"};
 `;

@@ -19,7 +19,6 @@ const Wrapper = styled.div`
 `;
 
 const Gauge = styled.div<{ gauge: number }>`
-  max-width: 260px;
   width: ${(props) => props.gauge}%;
   height: 100%;
   background-color: #242729;

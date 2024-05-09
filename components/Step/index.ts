@@ -7,3 +7,4 @@ export { default as Interest } from "./Interest";
 export { default as LookLike } from "./LookLike";
 export { default as MBTI } from "./MBTI";
 export { default as SexAndAge } from "./SexAndAge";
+export { default as Result } from "./Result";
