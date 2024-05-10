@@ -59,7 +59,7 @@ const FlowPage = () => {
     },
   });
 
-  const { toggleDrawer } = useDrawerStore();
+  const { toggleDrawer, setOnCompleted } = useDrawerStore();
   const { toggleModal } = useModalStore();
   const { toggleLoader } = useLoaderStore();
 
@@ -355,6 +355,19 @@ const FlowPage = () => {
             skeleton={true}
             onClick={() => {
               toggleDrawer();
+              setOnCompleted((idolName: string) => {
+                setFlowContext((prev) => {
+                  return {
+                    ...prev,
+                    context: {
+                      ...prev.context,
+                      lookLike: idolName,
+                    },
+                    step: "height" as Step,
+                    direction: "next",
+                  };
+                });
+              });
             }}
             label={"이중에 없어요!"}
           />

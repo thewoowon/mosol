@@ -9,10 +9,14 @@ export const useStepStore = create((set) => ({
 export const useDrawerStore = create<{
   isOpen: boolean;
   toggleDrawer: () => void;
+  onCompleted: (idolName: string) => void;
+  setOnCompleted: (onCompleted: (idolName: string) => void) => void;
 }>((set) => ({
   isOpen: false,
   toggleDrawer: () =>
     set((state: { isOpen: boolean }) => ({ isOpen: !state.isOpen })),
+  onCompleted: () => {},
+  setOnCompleted: (onCompleted) => set({ onCompleted }),
 }));
 
 export const useModalStore = create<{
