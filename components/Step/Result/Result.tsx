@@ -16,7 +16,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
       const shareData = {
         title: "못해솔로 - 최종 결과",
         text: "나의 이상형은?",
-        url: window.location.href,
+        url: `${window.location.origin}/result/${flowContext.context.result.id}`,
       };
 
       if (navigator.share) {
