@@ -11,7 +11,15 @@ const Hobby = React.forwardRef<HTMLDivElement, CommonStepType>(
         <div>
           <Typography type="h3">함께하고 싶은 취미는?</Typography>
           <Typography type="subtitle1">
-            가장 원하는 한가지를 선택해주세요
+            가장 원하는{" "}
+            <span
+              style={{
+                fontWeight: 700,
+              }}
+            >
+              한가지
+            </span>
+            를 선택해주세요
           </Typography>
         </div>
         <Grid>

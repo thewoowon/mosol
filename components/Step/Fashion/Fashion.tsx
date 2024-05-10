@@ -157,7 +157,8 @@ const Selection = styled.div<{ selected: boolean }>`
   width: 100%;
   height: 210px;
   border-radius: 4px;
-  border: solid 1px #d2d5d6;
+  border: ${(props) =>
+    props.selected ? "solid 4px #242729" : "solid 1px #d2d5d6"};
   font-family: Pretendard Variable;
   font-weight: 500;
   display: flex;

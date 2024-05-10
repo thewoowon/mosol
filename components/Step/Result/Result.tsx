@@ -11,6 +11,33 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
     const { toggleModal } = useModalStore();
     const router = useRouter();
+
+    const shareContent = async () => {
+      const shareData = {
+        title: "못해솔로 - 최종 결과",
+        text: "나의 이상형은?",
+        url: window.location.href,
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (error) {
+          console.error("Error sharing:", error);
+        }
+      } else {
+        copyToClipboard(shareData.url);
+      }
+    };
+
+    const copyToClipboard = async (text: string) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        toast.success("🦄 클립보드에 복사되었습니다!");
+      } catch (error) {
+        console.error("Error copying to clipboard:", error);
+      }
+    };
     return (
       <Container>
         <Idol>
@@ -34,13 +61,19 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
             style={{
               borderRadius: "8px",
               overflow: "hidden",
+              maxWidth: "250px",
+              maxHeight: "250px",
+              width: "100%",
+              height: "100%",
+              position: "relative",
             }}
           >
             <Image
               src={flowContext.context.result.picture}
               alt="나의 이상형"
-              width={250}
-              height={250}
+              fill
+              sizes="100%"
+              priority
               blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
             />
           </div>
@@ -119,13 +152,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
           >
             다시하기
           </Button>
-          <Button
-            onClick={() => {
-              toast.info("🦄 준비중인 기능입니다!");
-            }}
-          >
-            내 이상형 공유하기
-          </Button>
+          <Button onClick={shareContent}>내 이상형 공유하기</Button>
         </div>
         <div
           style={{
@@ -155,7 +182,6 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
-  padding: 56px 0 0 0;
   background-color: #242729;
 `;
 
@@ -165,7 +191,8 @@ const Idol = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 298px;
-  height: 536px;
+  max-height: 536px;
+  height: 100%;
   flex-grow: 0;
   padding: 12px 24px 16px 24px;
   border-radius: 20px;

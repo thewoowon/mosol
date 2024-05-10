@@ -7,12 +7,32 @@ import { toast } from "react-toastify";
 
 const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
+    const getKeyName = (key: string) => {
+      switch (key) {
+        case "art":
+          return "문화예술";
+        case "sport":
+          return "스포츠";
+        case "experience":
+          return "체험";
+        default:
+          return "";
+      }
+    };
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
           <Typography type="h3">함께하고 싶은 활동은?</Typography>
           <Typography type="subtitle1">
-            가장 원하는 한가지를 선택해주세요
+            가장 원하는{" "}
+            <span
+              style={{
+                fontWeight: 700,
+              }}
+            >
+              두가지
+            </span>
+            를 선택해주세요
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>
@@ -26,7 +46,7 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
                   marginBottom: "20px",
                 }}
               >
-                <Category>{category}</Category>
+                <Category>{getKeyName(category)}</Category>
                 <div
                   style={{
                     display: "flex",

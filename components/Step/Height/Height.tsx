@@ -11,7 +11,15 @@ const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
         <WidthBlock gap={6}>
           <Typography type="h3">선호하는 키는?</Typography>
           <Typography type="subtitle1">
-            가장 원하는 한가지를 선택해주세요
+            가장 원하는{" "}
+            <span
+              style={{
+                fontWeight: 700,
+              }}
+            >
+              한가지
+            </span>
+            를 선택해주세요
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>

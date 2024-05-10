@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import Typography from "../Typography";
 
 const Drawer = () => {
-  const { isOpen, toggleDrawer } = useDrawerStore();
+  const { isOpen, toggleDrawer, onCompleted } = useDrawerStore();
   const [idolName, setIdolName] = useState<string>("");
 
   if (!isOpen) {
@@ -108,6 +108,7 @@ const Drawer = () => {
               onKeyUp={(e) => {
                 if (e.key === "Enter" && idolName.length > 0) {
                   toggleDrawer();
+                  onCompleted(idolName);
                 }
               }}
             />
@@ -130,6 +131,7 @@ const Drawer = () => {
                   }}
                   onClick={() => {
                     toggleDrawer();
+                    onCompleted(idolName);
                   }}
                 >
                   완료
