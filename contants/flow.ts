@@ -316,17 +316,32 @@ export const EYES_TYPE: string[] = [
   "유쌍 왕눈",
 ];
 
-export const FACE_SHAPE: string[] = [
-  "강아지상",
-  "고양이상",
-  "공룡상",
-  "토끼상",
-  "두부상",
-  "늑대상",
-  "꼬부기상",
-  "사슴상",
-  "사막여우상",
-];
+export const FACE_SHAPE: {
+  [key: string]: string[];
+} = {
+  MALE: [
+    "강아지상",
+    "고양이상",
+    "공룡상",
+    "토끼상",
+    "두부상",
+    "늑대상",
+    "꼬부기상",
+    "사슴상",
+    "사막여우상",
+  ],
+  FEMALE: [
+    "강아지상",
+    "고양이상",
+    "오리상",
+    "토끼상",
+    "두부상",
+    "사막여우상",
+    "햄스터상",
+    "사슴상",
+    "꼬부기상",
+  ],
+};
 
 export const FASHION_STYLE: {
   [key: string]: string[];
@@ -361,8 +376,8 @@ export const FAVORITE_COLOR: string[] = [
 export const INTEREST: {
   [key: string]: string[];
 } = {
-  문화예술: ["영화", "콘서트", "뮤지컬", "전시", "출사", "독서"],
-  스포츠: [
+  art: ["영화", "콘서트", "뮤지컬", "전시", "출사", "독서"],
+  sport: [
     "야구",
     "축구",
     "골프",
@@ -378,7 +393,7 @@ export const INTEREST: {
     "스키/보드",
     "서핑",
   ],
-  체험: [
+  experience: [
     "캠핑",
     "드라이브",
     "원데이클래스",
