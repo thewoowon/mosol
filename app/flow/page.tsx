@@ -12,7 +12,7 @@ import {
   Result,
 } from "@/components/Step";
 import { FlowContextType, Step } from "@/types";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProgressBar from "@/components/ProgressBar";
 import styled from "@emotion/styled";
