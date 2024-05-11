@@ -52,3 +52,19 @@ export type CommonStepType = {
   flowContext: FlowContextType;
   setFlowContext: React.Dispatch<React.SetStateAction<FlowContextType>>;
 } & React.RefAttributes<HTMLDivElement>;
+
+export type ResultDataElementType = {
+  category: string;
+  stat: string;
+  rank: string;
+};
+
+export type ResultDataType = {
+  eyeshapeStatRankData: ResultDataElementType[];
+  faceshapeStatRankData: ResultDataElementType[];
+  fashionStatRankData: ResultDataElementType[];
+  heightStatRankData: ResultDataElementType[];
+  hobbyStatRankData: ResultDataElementType[];
+  looklikeStatRankData: ResultDataElementType[];
+  mbtiStatRankData: ResultDataElementType[];
+};
