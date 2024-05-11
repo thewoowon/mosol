@@ -55,10 +55,6 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
     }
   };
 
-  useEffect(() => {
-    console.log(resultData);
-  }, [resultData]);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }

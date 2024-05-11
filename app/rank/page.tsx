@@ -1,19 +1,59 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { useRouter } from "next/navigation";
 import { Tabs } from "@/components/Tabs";
 import { Tab } from "@/components/Tabs/Tabs";
 import Dashboard from "@/components/Dashboard";
+import { useQuery } from "@tanstack/react-query";
+import customAxios from "@/lib/axios";
+import Loader from "@/components/Loader";
+import { ResultDataType } from "@/types";
+
+const sexArray = ["female", "male"];
+
+enum secType {
+  female = "female",
+  male = "male",
+}
 
 const RankPage = () => {
-  const [sexType, setSexType] = useState(false);
+  // 여자: false, 남자: true
+  const [sexType, setSexType] = useState<"female" | "male">("female");
   const router = useRouter();
+
+  const [resultData, setResultData] = useState<ResultDataType>({
+    eyeshapeStatRankData: [],
+    faceshapeStatRankData: [],
+    fashionStatRankData: [],
+    heightStatRankData: [],
+    hobbyStatRankData: [],
+    looklikeStatRankData: [],
+    mbtiStatRankData: [],
+  });
 
   const handleBack = () => {
     router.back();
   };
+
+  // /result/getResultStatRank/{sex}
+
+  const { data: rankResultData, isLoading } = useQuery({
+    queryKey: ["rank", sexType],
+    queryFn: () => {
+      return customAxios({
+        method: "GET",
+        url: `/result/getResultStatRank/${sexType}`,
+      }).then((res) => res.data);
+    },
+  });
+
+  useEffect(() => {
+    if (rankResultData) {
+      setResultData(rankResultData.data);
+    }
+  }, [rankResultData]);
 
   return (
     <Container>
@@ -36,14 +76,19 @@ const RankPage = () => {
         </BackArrow>
         <div>이상형 랭킹</div>
       </Navigation>
-      <Tabs>
+      <Tabs
+        onChange={(index) => {
+          setSexType(sexArray[index] as secType);
+        }}
+      >
         <Tab label="여자 이상형">
-          <Dashboard type={"female"} />
+          <Dashboard data={resultData} sex={sexType} />
         </Tab>
         <Tab label="남자 이상형">
-          <Dashboard type={"male"} />
+          <Dashboard data={resultData} sex={sexType} />
         </Tab>
       </Tabs>
+      {isLoading && <Loader />}
     </Container>
   );
 };
