@@ -122,7 +122,7 @@ const Drawer = () => {
               {idolName.length > 0 && (
                 <button
                   style={{
-                    backgroundColor: "#FFD600",
+                    backgroundColor: "#FA6EE3",
                     color: "#242729",
                     padding: "8px 16px",
                     borderRadius: "4px",

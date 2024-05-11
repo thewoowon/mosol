@@ -101,7 +101,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
         <Ol>
           <Li>
             <LeftSide>성격</LeftSide>
-            <RightSide>{}</RightSide>
+            <RightSide>{resultData.data.mbti}</RightSide>
           </Li>
           <Li>
             <LeftSide>키</LeftSide>
