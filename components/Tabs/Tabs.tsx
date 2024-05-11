@@ -9,17 +9,19 @@ interface TabProps {
 
 interface TabsProps {
   children: React.ReactElement<TabProps>[];
+  onChange?: (index: number) => void;
 }
 
 export const Tab = ({ children }: TabProps) => {
   return <>{children}</>;
 };
 
-export const Tabs = ({ children }: TabsProps) => {
+export const Tabs = ({ children, onChange }: TabsProps) => {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabClick = (index: number) => {
     setActiveTab(index);
+    onChange && onChange(index);
   };
 
   return (

@@ -4,7 +4,7 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 
-const getEyeSvg = (type: string): React.ReactNode => {
+export const getEyeSvg = (type: string): React.ReactNode => {
   switch (type) {
     case "무쌍 실눈":
       return (

@@ -189,12 +189,6 @@ const WidthBlock = styled.div<{
   gap: ${(props) => props.gap || 16}px;
 `;
 
-const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #d2d5d6;
-`;
-
 const WidthHeightBlock = styled.div<{
   gap?: number;
 }>`
