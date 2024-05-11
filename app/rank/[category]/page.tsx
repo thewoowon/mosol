@@ -81,7 +81,7 @@ const RankDetailPage = ({ params: { category } }: RankDetailPageProps) => {
             />
           </svg>
         </BackArrow>
-        <div>이상형 랭킹</div>
+        <div>{`${categoryMap[category]} 랭킹`}</div>
       </Navigation>
       <DashboardContainer>
         <DetailDashboard data={resultData} category={category} sex={sex} />
