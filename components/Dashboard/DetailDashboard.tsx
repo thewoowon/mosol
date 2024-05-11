@@ -267,7 +267,10 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
           <Ol>
             {data.mbtiStatRankData.map((item, index) => {
               return (
-                <Li key={index} divider={index < 4}>
+                <Li
+                  key={index}
+                  divider={index < data.mbtiStatRankData.length - 1}
+                >
                   <RankNumber isReward={index < 3}>{item.rank}</RankNumber>
                   <div
                     style={{
@@ -498,7 +501,10 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
           <Ol>
             {data.hobbyStatRankData.map((item, index) => {
               return (
-                <Li key={index} divider={index < 4}>
+                <Li
+                  key={index}
+                  divider={index < data.hobbyStatRankData.length - 1}
+                >
                   <RankNumber isReward={index < 3}>{item.rank}</RankNumber>
                   <div
                     style={{
@@ -652,6 +658,7 @@ const Li = styled.li<{
 const RankNumber = styled.div<{
   isReward: boolean;
 }>`
+  min-width: 28px;
   font-size: 14px;
   font-weight: 500;
   color: ${(props) => (props.isReward ? "#fa6ee3" : "#979797")};
@@ -684,7 +691,6 @@ const Divider = styled.div`
 
 const EyeShapeElement = styled.div`
   background-color: #f5f6f8;
-  cursor: pointer;
   font-size: 12px;
   width: 100%;
   height: 123px;
@@ -704,7 +710,6 @@ const EyeShapeElement = styled.div`
 
 const FaceShapeElement = styled.div`
   background-color: #f5f6f8;
-  cursor: pointer;
   font-size: 14px;
   width: 100%;
   height: 128px;
@@ -724,7 +729,6 @@ const FaceShapeElement = styled.div`
 
 const FashionElement = styled.div`
   background-color: #f5f6f8;
-  cursor: pointer;
   font-size: 14px;
   width: 100%;
   height: 210px;
@@ -744,7 +748,6 @@ const FashionElement = styled.div`
 
 const HeightElement = styled.div`
   background-color: #f5f6f8;
-  cursor: pointer;
   font-size: 16px;
   width: 100%;
   height: 54px;
