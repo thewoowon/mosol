@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import customAxios from "@/lib/axios";
 import Loader from "@/components/Loader";
 import { ResultDataType } from "@/types";
+import { useRankStore } from "@/stores/global";
 
 const sexArray = ["female", "male"];
 
@@ -22,6 +23,7 @@ const RankPage = () => {
   // 여자: false, 남자: true
   const [sexType, setSexType] = useState<"female" | "male">("female");
   const router = useRouter();
+  const { setSex } = useRankStore();
 
   const [resultData, setResultData] = useState<ResultDataType>({
     eyeshapeStatRankData: [],
@@ -79,6 +81,7 @@ const RankPage = () => {
       <Tabs
         onChange={(index) => {
           setSexType(sexArray[index] as secType);
+          setSex(sexArray[index] as secType);
         }}
       >
         <Tab label="여자 이상형">

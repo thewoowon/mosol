@@ -48,3 +48,11 @@ export const useLoaderStore = create<{
       isLoading: !state.isLoading,
     })),
 }));
+
+export const useRankStore = create<{
+  sex: string;
+  setSex: (sex: string) => void;
+}>((set) => ({
+  sex: "female",
+  setSex: (sex: string) => set({ sex }),
+}));
