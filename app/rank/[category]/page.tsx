@@ -104,6 +104,7 @@ const Container = styled.div`
   width: 100%;
   background-color: white;
   position: relative;
+  color: #000000;
 `;
 
 const Navigation = styled.div`
