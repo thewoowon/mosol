@@ -34,6 +34,19 @@ const Modal = () => {
         <Flex>
           <Button
             onClick={() => {
+              toggleModal({
+                isOpen: false,
+                title: "",
+                description: "",
+                onConfirm: () => {},
+              });
+            }}
+            skeleton
+          >
+            취소
+          </Button>
+          <Button
+            onClick={() => {
               onConfirm();
               toggleModal({
                 isOpen: false,
@@ -44,18 +57,6 @@ const Modal = () => {
             }}
           >
             확인
-          </Button>
-          <Button
-            onClick={() => {
-              toggleModal({
-                isOpen: false,
-                title: "",
-                description: "",
-                onConfirm: () => {},
-              });
-            }}
-          >
-            취소
           </Button>
         </Flex>
       </div>
@@ -92,8 +93,10 @@ const Flex = styled.div`
   gap: 10px;
 `;
 
-const Button = styled.button`
-  background-color: #fa6ee3;
+const Button = styled.button<{
+  skeleton?: boolean;
+}>`
+  background-color: ${(props) => (props.skeleton ? "white" : "#fa6ee3")};
   color: white;
   border: none;
   padding: 10px 20px;
@@ -101,4 +104,11 @@ const Button = styled.button`
   cursor: pointer;
   font-size: 16px;
   flex: 1;
+
+  ${(props) =>
+    props.skeleton &&
+    `
+    border: solid 1px #fa6ee3;
+    color: #fa6ee3;
+  `}
 `;

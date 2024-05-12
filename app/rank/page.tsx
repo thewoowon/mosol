@@ -109,7 +109,6 @@ const Container = styled.div`
   justify-content: flex-start;
   height: 100%;
   padding-top: 56px;
-  padding-bottom: 56px;
   width: 100%;
   background-color: white;
   position: relative;

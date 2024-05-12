@@ -73,7 +73,7 @@ body {
     "Segoe UI Symbol",
     sans-serif !important;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
     135deg,
     #ff7979 0%,
     #ffbe76 10%,
@@ -86,7 +86,8 @@ body {
     #dfe6e9 80%,
     #f8c291 90%,
     #ff9797 100%
-  );
+  ); */
+  background-color: #f1f1f1;
 }
 
 @layer utilities {
