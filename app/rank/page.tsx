@@ -23,7 +23,7 @@ const RankPage = () => {
   // 여자: false, 남자: true
   const [sexType, setSexType] = useState<"female" | "male">("female");
   const router = useRouter();
-  const { setSex } = useRankStore();
+  const { setSex, resultId } = useRankStore();
 
   const [resultData, setResultData] = useState<ResultDataType>({
     eyeshapeStatRankData: [],
@@ -36,6 +36,10 @@ const RankPage = () => {
   });
 
   const handleBack = () => {
+    if (resultId) {
+      router.push(`/result/${resultId}`);
+      return;
+    }
     router.back();
   };
 

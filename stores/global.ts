@@ -51,8 +51,12 @@ export const useLoaderStore = create<{
 
 export const useRankStore = create<{
   sex: string;
+  resultId: number | null;
   setSex: (sex: string) => void;
+  setResultId: (resultId: number) => void;
 }>((set) => ({
   sex: "female",
+  resultId: null,
   setSex: (sex: string) => set({ sex }),
+  setResultId: (resultId: number) => set({ resultId }),
 }));

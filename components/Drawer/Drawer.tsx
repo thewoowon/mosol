@@ -123,7 +123,7 @@ const Drawer = () => {
                 <button
                   style={{
                     backgroundColor: "#FA6EE3",
-                    color: "#242729",
+                    color: "white",
                     padding: "8px 16px",
                     borderRadius: "4px",
                     border: "none",

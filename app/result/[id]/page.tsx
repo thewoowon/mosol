@@ -8,15 +8,17 @@ import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import customAxios from "@/lib/axios";
 import { useEffect } from "react";
+import { useRankStore } from "@/stores/global";
 
 interface ResultPageProps {
   params: {
-    id: string;
+    id: number;
   };
 }
 
 const ResultPage = ({ params: { id } }: ResultPageProps) => {
   const router = useRouter();
+  const { setResultId } = useRankStore();
 
   const { data: resultData, isLoading } = useQuery({
     queryKey: ["result", id],
@@ -104,6 +106,10 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
             <RightSide>{resultData.data.mbti}</RightSide>
           </Li>
           <Li>
+            <LeftSide>외모</LeftSide>
+            <RightSide>{resultData.data.lookLike}</RightSide>
+          </Li>
+          <Li>
             <LeftSide>키</LeftSide>
             <RightSide>{resultData.data.height}</RightSide>
           </Li>
@@ -153,6 +159,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
           textDecoration: "underline",
         }}
         onClick={() => {
+          setResultId(id);
           router.push("/rank");
         }}
       >

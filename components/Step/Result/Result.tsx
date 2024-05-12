@@ -1,5 +1,5 @@
 import Typography from "@/components/Typography";
-import { useModalStore } from "@/stores/global";
+import { useModalStore, useRankStore } from "@/stores/global";
 import { CommonStepType, Step } from "@/types";
 import styled from "@emotion/styled";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
     const { toggleModal } = useModalStore();
+    const { setResultId } = useRankStore();
     const router = useRouter();
 
     const shareContent = async () => {
@@ -81,6 +82,10 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
             <Li>
               <LeftSide>성격</LeftSide>
               <RightSide>{flowContext.context.mbti}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>외모</LeftSide>
+              <RightSide>{flowContext.context.lookLike}</RightSide>
             </Li>
             <Li>
               <LeftSide>키</LeftSide>
@@ -161,6 +166,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
             textDecoration: "underline",
           }}
           onClick={() => {
+            setResultId(flowContext.context.result.id);
             router.push("/rank");
           }}
         >
