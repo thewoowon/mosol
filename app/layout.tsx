@@ -161,14 +161,14 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
-        {/* <meta
+        <meta
           name="google-site-verification"
           content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION}
         />
         <meta
           name="naver-site-verification"
           content={process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION}
-        /> */}
+        />
       </head>
       <body>
         <Analytics />
