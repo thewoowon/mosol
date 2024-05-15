@@ -79,7 +79,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
             />
           </svg>
         </div>
-        <Typography type="h4">나의 이상형은?</Typography>
+        <ResultTypography>나의 이상형은?</ResultTypography>
         <div
           style={{
             borderRadius: "8px",
@@ -194,6 +194,10 @@ const Idol = styled.div`
   border-radius: 20px;
   background-color: #f4f7fc;
   gap: 12px;
+
+  @media (max-width: 400px) {
+    gap: 6px;
+  }
 `;
 
 const Button = styled.button<{
@@ -233,6 +237,10 @@ const Ol = styled.ol`
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
+
+  @media (max-width: 400px) {
+    gap: 4px;
+  }
 `;
 
 const Li = styled.li`
@@ -244,6 +252,10 @@ const Li = styled.li`
   justify-content: flex-start;
   align-items: center;
   gap: 18px;
+
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
 `;
 
 const LeftSide = styled.div`
@@ -261,4 +273,13 @@ const RightSide = styled.div`
   align-items: center;
   font-weight: bold;
   color: black;
+`;
+
+const ResultTypography = styled.div`
+  font-size: 24px;
+  font-weight: 500;
+
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
 `;

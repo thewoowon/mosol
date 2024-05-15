@@ -23,14 +23,15 @@ import customAxios from "@/lib/axios";
 import { useDrawerStore, useLoaderStore, useModalStore } from "@/stores/global";
 import { useRouter } from "next/navigation";
 
+// 성별&나이 -> 닮은꼴 -> 얼굴형 -> 눈매 -> 키 -> 패션 -> MBTI -> 관심사 -> 결과
 const stepSequence = [
   "sexAndAge",
-  "mbti",
   "lookLike",
-  "height",
-  "eyeShape",
   "faceShape",
+  "eyeShape",
+  "height",
   "fashion",
+  "mbti",
   "interest",
   "result",
 ];
@@ -59,7 +60,7 @@ const FlowPage = () => {
     },
   });
 
-  const { toggleDrawer, setOnCompleted } = useDrawerStore();
+  const { toggleDrawer, setOnCompleted, setIdolName } = useDrawerStore();
   const { toggleModal } = useModalStore();
   const { toggleLoader } = useLoaderStore();
 
@@ -150,6 +151,7 @@ const FlowPage = () => {
         title: "이상형 생성을 종료하시겠어요?",
         description: "입력한 정보가 모두 사라집니다.",
         onConfirm: () => {
+          setIdolName("");
           router.push("/");
         },
       });

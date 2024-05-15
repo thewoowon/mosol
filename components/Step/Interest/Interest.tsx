@@ -30,7 +30,7 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
                 fontWeight: 700,
               }}
             >
-              두가지
+              두 가지
             </span>
             를 선택해주세요
           </Typography>
@@ -143,6 +143,7 @@ const Category = styled.div`
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: black;
 `;
 
 const WidthBlock = styled.div<{

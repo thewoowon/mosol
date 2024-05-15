@@ -12,6 +12,7 @@ export default function Home() {
       <div
         style={{
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           width: "100%",
@@ -24,6 +25,20 @@ export default function Home() {
           width={280}
           height={243}
         />
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: 16,
+            fontSize: "16px",
+            lineHeight: "24px",
+          }}
+        >
+          <div>우리가 상상하던 이상형을 현실로</div>
+          <div>Ai가 만들어주는 나만의 이상형 찾기</div>
+        </div>
       </div>
       <Flex flexDirection="column">
         <BottomButton
@@ -51,7 +66,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background-color: #111111;
+  background-color: white;
   padding: 56px 16px;
   width: 100%;
   height: 100%;

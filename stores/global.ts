@@ -8,11 +8,15 @@ export const useStepStore = create((set) => ({
 
 export const useDrawerStore = create<{
   isOpen: boolean;
+  idolName: string;
+  setIdolName: (idolName: string) => void;
   toggleDrawer: () => void;
   onCompleted: (idolName: string) => void;
   setOnCompleted: (onCompleted: (idolName: string) => void) => void;
 }>((set) => ({
   isOpen: false,
+  idolName: "",
+  setIdolName: (idolName) => set({ idolName }),
   toggleDrawer: () =>
     set((state: { isOpen: boolean }) => ({ isOpen: !state.isOpen })),
   onCompleted: () => {},
