@@ -236,6 +236,11 @@ const Ol = styled.ol`
   gap: 8px;
   flex: 1;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Li = styled.li`
