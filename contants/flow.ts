@@ -124,7 +124,7 @@ export const LOOK_LIKE: {
       src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/ebcefc70-1b66-4dab-0ca5-f7708e996000/public",
     },
     {
-      name: "강혜린",
+      name: "강해린",
       description: "송강이란 무엇인가",
       src: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d86d7f2a-b1bb-4216-a9dc-80fbbbb7d800/public",
     },

@@ -115,7 +115,7 @@ const lookLikeMap: {
   권은비:
     "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/fd2ce4d0-325a-49fe-41f8-723949081e00/public",
   수지: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/ebcefc70-1b66-4dab-0ca5-f7708e996000/public",
-  강혜린:
+  강해린:
     "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d86d7f2a-b1bb-4216-a9dc-80fbbbb7d800/public",
   민지: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d6596b0e-b551-4650-0889-e6cf6f53bc00/public",
   한효주:

@@ -57,7 +57,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
               />
             </svg>
           </div>
-          <Typography type="h4">나의 이상형은?</Typography>
+          <Typography type="h5">나의 이상형은?</Typography>
           <div
             style={{
               borderRadius: "8px",
@@ -245,7 +245,18 @@ const Ol = styled.ol`
   gap: 8px;
   flex: 1;
   overflow-y: auto;
-  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #fa6ee3;
+    border-radius: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f4f7fc;
+    border-radius: 8px;
+  }
+  scrollbar-width: thin;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
     display: none;
