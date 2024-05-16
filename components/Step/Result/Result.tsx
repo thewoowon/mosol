@@ -253,10 +253,7 @@ const Ol = styled.ol`
     border-radius: 8px;
   }
   scrollbar-width: thin;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  -ms-overflow-style: auto;
 `;
 
 const Li = styled.li`
