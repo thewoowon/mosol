@@ -173,7 +173,6 @@ const Grid = styled.div`
   gap: 8px;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

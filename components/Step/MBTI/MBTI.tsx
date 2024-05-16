@@ -49,11 +49,20 @@ const MBTI = React.forwardRef<HTMLDivElement, CommonStepType>(
                       alignItems: "center",
                     }}
                   >
-                    <div>{item.description}</div>
-                    <div>{item.detail}</div>
+                    <div>{item.description + " " + item.detail}</div>
                   </div>
-                  <Divider />
-                  <div>{item.type}</div>
+                  <div
+                    style={{
+                      width: "100%",
+                      borderTop: "1px solid #d2d5d6",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    {item.type}
+                  </div>
                 </Selection>
               );
             })}
@@ -96,7 +105,6 @@ const Grid = styled.div`
   gap: 8px;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`
@@ -105,12 +113,12 @@ const Selection = styled.div<{ selected: boolean }>`
 
   width: 100%;
   height: 100%;
-  max-height: 123px;
+  max-height: 168px;
   padding: 16px 13px 10px;
   border-radius: 4px;
   border: solid 1px #d2d5d6;
   font-family: Pretendard Variable;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   display: flex;
   flex-direction: column;

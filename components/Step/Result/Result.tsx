@@ -146,29 +146,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
                 title: "이상형 생성을 다시 하시겠어요? 😚",
                 description: "입력한 정보가 모두 사라집니다.",
                 onConfirm: () => {
-                  setFlowContext((prev) => {
-                    return {
-                      ...prev,
-                      context: {
-                        sex: "",
-                        age: "",
-                        mbti: "",
-                        lookLike: "",
-                        height: "",
-                        eyeShape: "",
-                        faceShape: "",
-                        fashion: "",
-                        interest: [],
-                        hobby: [],
-                        result: {
-                          id: 0,
-                          picture: "",
-                        },
-                      },
-                      step: "sexAndAge" as Step,
-                      direction: "prev",
-                    };
-                  });
+                  router.push("/");
                 },
               });
             }}
