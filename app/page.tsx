@@ -34,6 +34,7 @@ export default function Home() {
             marginTop: 16,
             fontSize: "16px",
             lineHeight: "24px",
+            color: "#333333",
           }}
         >
           <div>우리가 상상하던 이상형을 현실로</div>

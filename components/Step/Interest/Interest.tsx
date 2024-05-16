@@ -44,6 +44,7 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
                   borderBottom: "1px solid #d2d5d6",
                   paddingBottom: "16px",
                   marginBottom: "20px",
+                  height: "fit-content",
                 }}
               >
                 <Category>{getKeyName(category)}</Category>
@@ -121,7 +122,6 @@ const Grid = styled.div`
   gap: 8px;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`
@@ -157,21 +157,15 @@ const WidthBlock = styled.div<{
   gap: ${(props) => props.gap || 16}px;
 `;
 
-const Divider = styled.div`
-  width: 100%;
-  height: 1px;
-  background-color: #d2d5d6;
-`;
-
 const WidthHeightBlock = styled.div<{
   gap?: number;
 }>`
   width: 100%;
-  height: 100%;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   gap: ${(props) => props.gap || 16}px;
   padding: 40px 0 14px 0;
   overflow: auto;

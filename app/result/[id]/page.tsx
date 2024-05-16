@@ -145,7 +145,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
         <Button
           skeleton={true}
           onClick={() => {
-            router.push("/flow");
+            router.push("/");
           }}
         >
           나도 해보기
