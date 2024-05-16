@@ -14,11 +14,29 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
     const router = useRouter();
 
     const shareContent = async () => {
-      const shareData = {
+      const shareData: ShareData = {
         title: "못해솔로 - 최종 결과",
         text: "나의 이상형은?",
         url: `${window.location.origin}/result/${flowContext.context.result.id}`,
       };
+
+      // 모바일 브라우저의 커버리지는 85% 정도,
+      // 나머지 15%는 클립보드로 복사하는 방식으로 대응
+      // TODO: 지원하지 않는 브라우저에 대한 fallback 처리
+      // 지원하지 않는 브라우저 -> Android webview, Firefox for Android
+
+      // navigator.share API를 지원하는 브라우저인지 확인
+      // 현재 브라우저 정보를 확인하는 방법은?
+      // https://developer.mozilla.org/en-US/docs/Web/API/Navigator
+
+      // 현재 브라우저가 Android webview 또는 Firefox for Android인 경우
+      if (
+        navigator.userAgent.includes("wv") &&
+        navigator.userAgent.includes("Android")
+      ) {
+        copyToClipboard(shareData.url || "");
+        return;
+      }
 
       if (navigator.share) {
         try {
@@ -27,7 +45,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
           console.error("Error sharing:", error);
         }
       } else {
-        copyToClipboard(shareData.url);
+        copyToClipboard(shareData.url || "");
       }
     };
 
