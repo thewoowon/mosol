@@ -7,7 +7,9 @@ import Typography from "@/components/Typography";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import customAxios from "@/lib/axios";
-import { useRankStore } from "@/stores/global";
+import { useLoaderStore, useRankStore } from "@/stores/global";
+import { useEffect } from "react";
+import Loader from "@/components/Loader";
 
 interface ResultPageProps {
   params: {
@@ -18,6 +20,7 @@ interface ResultPageProps {
 const ResultPage = ({ params: { id } }: ResultPageProps) => {
   const router = useRouter();
   const { setResultId } = useRankStore();
+  const { offLoader } = useLoaderStore();
 
   const { data: resultData, isLoading } = useQuery({
     queryKey: ["result", id],
@@ -74,8 +77,15 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
     }
   };
 
+  useEffect(() => {
+    offLoader();
+    return () => {
+      offLoader();
+    };
+  }, [offLoader]);
+
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (

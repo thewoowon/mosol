@@ -251,8 +251,11 @@ const FlowPage = () => {
       const { code, data } = response;
       if (code === "200") {
         toast.success("🎉 이상형 생성에 성공했어요!");
-        router.push(`/result/${data.id}`);
-        offLoader();
+        // router.push(`/result/${data.id}`);
+        setTimeout(() => {
+          window.location.href = `/result/${data.id}`;
+        }, 2000);
+
         // setFlowContext((prev) => {
         //   return {
         //     ...prev,
