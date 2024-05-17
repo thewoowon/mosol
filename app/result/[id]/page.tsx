@@ -81,74 +81,76 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
 
   return (
     <Container>
-      <Idol>
-        <div>
-          <svg
-            width="54"
-            height="14"
-            viewBox="0 0 54 14"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      <ScrollWrapper>
+        <Idol>
+          <div>
+            <svg
+              width="54"
+              height="14"
+              viewBox="0 0 54 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect y="7" width="54" height="7" rx="3.5" fill="#242729" />
+              <path
+                d="M18 5C18 2.23858 20.2386 0 23 0H31C33.7614 0 36 2.23858 36 5V7H18V5Z"
+                fill="#242729"
+              />
+            </svg>
+          </div>
+          <Typography type="h4">나의 이상형은?</Typography>
+          <div
+            style={{
+              borderRadius: "8px",
+              overflow: "hidden",
+              minWidth: "250px",
+              minHeight: "250px",
+              width: "250px",
+              height: "250px",
+              position: "relative",
+            }}
           >
-            <rect y="7" width="54" height="7" rx="3.5" fill="#242729" />
-            <path
-              d="M18 5C18 2.23858 20.2386 0 23 0H31C33.7614 0 36 2.23858 36 5V7H18V5Z"
-              fill="#242729"
+            <Image
+              src={`https://devapi.tikitaka.chat/result/image/${id}`}
+              alt="나의 이상형"
+              fill
+              sizes="100%"
+              priority
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
             />
-          </svg>
-        </div>
-        <Typography type="h4">나의 이상형은?</Typography>
-        <div
-          style={{
-            borderRadius: "8px",
-            overflow: "hidden",
-            maxWidth: "250px",
-            maxHeight: "250px",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-          }}
-        >
-          <Image
-            src={`https://devapi.tikitaka.chat/result/image/${id}`}
-            alt="나의 이상형"
-            fill
-            sizes="100%"
-            priority
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-          />
-        </div>
-        <Ol>
-          <Li>
-            <LeftSide>성격</LeftSide>
-            <RightSide>{resultData.data.mbti}</RightSide>
-          </Li>
-          <Li>
-            <LeftSide>외모</LeftSide>
-            <RightSide>{resultData.data.lookLike}</RightSide>
-          </Li>
-          <Li>
-            <LeftSide>키</LeftSide>
-            <RightSide>{resultData.data.height}</RightSide>
-          </Li>
-          <Li>
-            <LeftSide>눈매</LeftSide>
-            <RightSide>{resultData.data.eyeShape}</RightSide>
-          </Li>
-          <Li>
-            <LeftSide>얼굴상</LeftSide>
-            <RightSide>{resultData.data.faceShape}</RightSide>
-          </Li>
-          <Li>
-            <LeftSide>패션</LeftSide>
-            <RightSide>{resultData.data.fashion}</RightSide>
-          </Li>
-          <Li>
-            <LeftSide>활동</LeftSide>
-            <RightSide>{resultData.data.hobby}</RightSide>
-          </Li>
-        </Ol>
-      </Idol>
+          </div>
+          <Ol>
+            <Li>
+              <LeftSide>성격</LeftSide>
+              <RightSide>{resultData.data.mbti}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>외모</LeftSide>
+              <RightSide>{resultData.data.lookLike}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>키</LeftSide>
+              <RightSide>{resultData.data.height}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>눈매</LeftSide>
+              <RightSide>{resultData.data.eyeShape}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>얼굴상</LeftSide>
+              <RightSide>{resultData.data.faceShape}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>패션</LeftSide>
+              <RightSide>{resultData.data.fashion}</RightSide>
+            </Li>
+            <Li>
+              <LeftSide>활동</LeftSide>
+              <RightSide>{resultData.data.hobby}</RightSide>
+            </Li>
+          </Ol>
+        </Idol>
+      </ScrollWrapper>
       <div
         style={{
           width: "100%",
@@ -206,8 +208,7 @@ const Idol = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 298px;
-  max-height: 536px;
-  height: 100%;
+  height: fit-content;
   flex-grow: 0;
   padding: 12px 24px 16px 24px;
   border-radius: 20px;
@@ -253,20 +254,6 @@ const Ol = styled.ol`
   justify-content: center;
   gap: 8px;
   flex: 1;
-  overflow-y: auto;
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #fa6ee3;
-    border-radius: 8px;
-  }
-  &::-webkit-scrollbar-track {
-    background-color: #f4f7fc;
-    border-radius: 8px;
-  }
-  scrollbar-width: thin;
-  -ms-overflow-style: auto;
 `;
 
 const Li = styled.li`
@@ -295,4 +282,20 @@ const RightSide = styled.div`
   align-items: center;
   font-weight: bold;
   color: black;
+`;
+
+const ScrollWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  overflow-y: auto;
+  padding: 8px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 `;
