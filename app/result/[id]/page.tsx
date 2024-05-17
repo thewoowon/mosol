@@ -120,7 +120,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
             }}
           >
             <Image
-              src={`https://devapi.tikitaka.chat/result/image/${id}`}
+              src={`https://stonslabdata.com/result/image/${id}`}
               alt="나의 이상형"
               fill
               sizes="100%"

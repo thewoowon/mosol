@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "devapi.tikitaka.chat",
+        hostname: "stonslabdata.com",
         port: "",
         pathname: "/result/image/**/*",
       },
