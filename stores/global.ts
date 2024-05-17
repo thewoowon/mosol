@@ -45,12 +45,16 @@ export const useModalStore = create<{
 export const useLoaderStore = create<{
   isLoading: boolean;
   toggleLoader: () => void;
+  onLoader: () => void;
+  offLoader: () => void;
 }>((set) => ({
   isLoading: false,
   toggleLoader: () =>
     set((state: { isLoading: boolean }) => ({
       isLoading: !state.isLoading,
     })),
+  onLoader: () => set({ isLoading: true }),
+  offLoader: () => set({ isLoading: false }),
 }));
 
 export const useRankStore = create<{

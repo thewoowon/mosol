@@ -7,7 +7,6 @@ import Typography from "@/components/Typography";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import customAxios from "@/lib/axios";
-import { useEffect } from "react";
 import { useRankStore } from "@/stores/global";
 
 interface ResultPageProps {
@@ -168,9 +167,9 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
             router.push("/");
           }}
         >
-          나도 해보기
+          이상형 찾기
         </Button>
-        <Button onClick={shareContent}>공유하기</Button>
+        <Button onClick={shareContent}>이상형 공유하기</Button>
       </div>
       <div
         style={{

@@ -23,7 +23,8 @@ import customAxios from "@/lib/axios";
 import { useDrawerStore, useLoaderStore, useModalStore } from "@/stores/global";
 import { useRouter } from "next/navigation";
 
-// 성별&나이 -> 닮은꼴 -> 얼굴형 -> 눈매 -> 키 -> 패션 -> MBTI -> 관심사 -> 결과
+// 20240517 -> result를 단일로 빼서 사용하도록 수정
+// 성별&나이 -> 닮은꼴 -> 얼굴형 -> 눈매 -> 키 -> 패션 -> MBTI -> 관심사
 const stepSequence = [
   "sexAndAge",
   "lookLike",
@@ -33,7 +34,7 @@ const stepSequence = [
   "fashion",
   "mbti",
   "interest",
-  "result",
+  // "result",
 ];
 
 const FlowPage = () => {
@@ -62,7 +63,7 @@ const FlowPage = () => {
 
   const { toggleDrawer, setOnCompleted, setIdolName } = useDrawerStore();
   const { toggleModal } = useModalStore();
-  const { toggleLoader } = useLoaderStore();
+  const { onLoader, offLoader } = useLoaderStore();
 
   const getComponent = (step: string) => {
     const components: {
@@ -219,19 +220,30 @@ const FlowPage = () => {
 
   const createIdolMutation = useMutation({
     mutationFn: () => {
+      const {
+        age,
+        sex,
+        mbti,
+        lookLike,
+        height,
+        eyeShape,
+        faceShape,
+        fashion,
+        interest,
+      } = flowContext.context;
       return customAxios({
         method: "POST",
         url: "/result/saveResult",
         data: {
-          age: flowContext.context.age,
-          sex: flowContext.context.sex,
-          mbti: flowContext.context.mbti,
-          lookLike: flowContext.context.lookLike,
-          height: flowContext.context.height,
-          eyeShape: flowContext.context.eyeShape,
-          faceShape: flowContext.context.faceShape,
-          fashion: flowContext.context.fashion,
-          hobbyList: flowContext.context.interest,
+          age,
+          sex,
+          mbti,
+          lookLike,
+          height,
+          eyeShape,
+          faceShape,
+          fashion,
+          hobbyList: interest,
         },
       }).then((res: any) => res.data);
     },
@@ -239,29 +251,30 @@ const FlowPage = () => {
       const { code, data } = response;
       if (code === "200") {
         toast.success("🎉 이상형 생성에 성공했어요!");
-        toggleLoader();
-        setFlowContext((prev) => {
-          return {
-            ...prev,
-            context: {
-              ...prev.context,
-              result: {
-                id: data.id,
-                picture: data.picture,
-              },
-            },
-            step: "result" as Step,
-            direction: "next",
-          };
-        });
+        router.push(`/result/${data.id}`);
+        offLoader();
+        // setFlowContext((prev) => {
+        //   return {
+        //     ...prev,
+        //     context: {
+        //       ...prev.context,
+        //       result: {
+        //         id: data.id,
+        //         picture: data.picture,
+        //       },
+        //     },
+        //     step: "result" as Step,
+        //     direction: "next",
+        //   };
+        // });
       } else {
         toast.error("😭 이상형 생성에 실패했어요... 다시 시도해 주세요");
-        toggleLoader();
+        offLoader();
       }
     },
     onError: () => {
       toast.error("😭 이상형 생성에 실패했어요... 다시 시도해 주세요");
-      toggleLoader();
+      offLoader();
     },
   });
 
@@ -338,7 +351,7 @@ const FlowPage = () => {
               // 마지막 단계일 때
               if (flowContext.step === "interest") {
                 createIdolMutation.mutate();
-                toggleLoader();
+                onLoader();
                 return;
               }
 
