@@ -173,6 +173,11 @@ const Grid = styled.div`
   gap: 8px;
   overflow-y: auto;
   width: 100%;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

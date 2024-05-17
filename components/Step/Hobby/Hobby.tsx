@@ -103,6 +103,11 @@ const Grid = styled.div`
   padding: 20px;
   overflow-y: auto;
   min-height: 400px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`

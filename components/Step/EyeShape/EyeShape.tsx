@@ -292,6 +292,11 @@ const Grid = styled.div`
   overflow-y: auto;
   width: 100%;
   height: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
 `;
 
 const Selection = styled.div<{ selected: boolean }>`
