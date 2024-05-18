@@ -219,18 +219,27 @@ const FlowPage = () => {
   };
 
   const createIdolMutation = useMutation({
-    mutationFn: () => {
-      const {
-        age,
-        sex,
-        mbti,
-        lookLike,
-        height,
-        eyeShape,
-        faceShape,
-        fashion,
-        interest,
-      } = flowContext.context;
+    mutationFn: ({
+      age,
+      sex,
+      mbti,
+      lookLike,
+      height,
+      eyeShape,
+      faceShape,
+      fashion,
+      interest,
+    }: {
+      sex: string | null;
+      age: string | null;
+      mbti: string | null;
+      lookLike: string | null;
+      height: string | null;
+      eyeShape: string | null;
+      faceShape: string | null;
+      fashion: string | null;
+      interest: string[];
+    }) => {
       return customAxios({
         method: "POST",
         url: "/result/saveResult",
@@ -353,7 +362,101 @@ const FlowPage = () => {
               if (!validation()) return;
               // 마지막 단계일 때
               if (flowContext.step === "interest") {
-                createIdolMutation.mutate();
+                const {
+                  age,
+                  sex,
+                  mbti,
+                  lookLike,
+                  height,
+                  eyeShape,
+                  faceShape,
+                  fashion,
+                  interest,
+                } = flowContext.context;
+
+                if (!age) {
+                  toast.error("😭 나이를 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "sexAndAge" as Step };
+                  });
+                  return;
+                }
+
+                if (!sex) {
+                  toast.error("😭 성별을 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "sexAndAge" as Step };
+                  });
+                  return;
+                }
+
+                if (!mbti) {
+                  toast.error("😭 MBTI를 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "mbti" as Step };
+                  });
+                  return;
+                }
+
+                if (!lookLike) {
+                  toast.error("😭 닮은꼴을 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "lookLike" as Step };
+                  });
+                  return;
+                }
+
+                if (!height) {
+                  toast.error("😭 키를 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "height" as Step };
+                  });
+                  return;
+                }
+
+                if (!eyeShape) {
+                  toast.error("😭 눈매를 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "eyeShape" as Step };
+                  });
+                  return;
+                }
+
+                if (!faceShape) {
+                  toast.error("😭 얼굴형을 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "faceShape" as Step };
+                  });
+                  return;
+                }
+
+                if (!fashion) {
+                  toast.error("😭 패션을 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "fashion" as Step };
+                  });
+                  return;
+                }
+
+                if (interest.length === 0) {
+                  toast.error("😭 관심사를 선택해주세요!");
+                  setFlowContext((prev) => {
+                    return { ...prev, step: "interest" as Step };
+                  });
+                  return;
+                }
+
+                createIdolMutation.mutate({
+                  age,
+                  sex,
+                  mbti,
+                  lookLike,
+                  height,
+                  eyeShape,
+                  faceShape,
+                  fashion,
+                  interest,
+                });
                 onLoader();
                 return;
               }
