@@ -179,7 +179,13 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
         >
           다시하기
         </Button>
-        <Button onClick={shareContent}>이상형 공유하기</Button>
+        <Button
+          onClick={async () => {
+            await shareContent();
+          }}
+        >
+          이상형 공유하기
+        </Button>
       </div>
       <div
         style={{
