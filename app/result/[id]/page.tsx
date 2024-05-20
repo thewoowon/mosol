@@ -180,6 +180,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
           다시하기
         </Button>
         <Button
+          id="share-content"
           onClick={async () => {
             await shareContent();
           }}

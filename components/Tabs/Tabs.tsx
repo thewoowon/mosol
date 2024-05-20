@@ -24,11 +24,14 @@ export const Tabs = ({ children, onChange }: TabsProps) => {
     onChange && onChange(index);
   };
 
+  // 0: <Tab label="여자 이상형">
+  // 1: <Tab label="남자 이상형">
   return (
     <div className="tabs">
       <ul className="tab-list">
         {children.map((tab, index) => (
           <li
+            id={`tab-list-item-${index === 0 ? "female" : "male"}`}
             key={index}
             className={`tab-list-item ${index === activeTab ? "active" : ""}`}
             onClick={() => handleTabClick(index)}

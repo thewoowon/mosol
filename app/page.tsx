@@ -50,6 +50,7 @@ export default function Home() {
           label="이런 사람이 좋아"
         />
         <BottomButton
+          id="not-like-this-person"
           skeleton
           onClick={() => {
             // 준비 중입니다.

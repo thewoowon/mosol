@@ -1,14 +1,15 @@
 import styled from "@emotion/styled";
 
 type BottomButtunProps = {
+  id?: string;
   onClick: () => void;
   label: string;
   skeleton?: boolean;
 };
 
-const BottomButton = ({ onClick, label, skeleton }: BottomButtunProps) => {
+const BottomButton = ({ id, onClick, label, skeleton }: BottomButtunProps) => {
   return (
-    <Button skeleton={skeleton} onClick={onClick}>
+    <Button {...(id ? { id } : {})} skeleton={skeleton} onClick={onClick}>
       {label}
     </Button>
   );
