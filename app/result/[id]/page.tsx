@@ -49,11 +49,13 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
     // https://developer.mozilla.org/en-US/docs/Web/API/Navigator
 
     // 현재 브라우저가 Android webview 또는 Firefox for Android인 경우
-    if (
-      navigator.userAgent.includes("wv") &&
-      navigator.userAgent.includes("Android")
-    ) {
-      copyToClipboard(shareData.url || "");
+    const isAndroidWebView = () => {
+      const ua = navigator.userAgent.toLowerCase();
+      return ua.includes("wv") && ua.includes("android");
+    };
+
+    if (isAndroidWebView()) {
+      await copyToClipboard(shareData.url || "");
       return;
     }
 
@@ -62,9 +64,10 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
         await navigator.share(shareData);
       } catch (error) {
         console.error("Error sharing:", error);
+        toast.error("❌ 공유에 실패했습니다.");
       }
     } else {
-      copyToClipboard(shareData.url || "");
+      await copyToClipboard(shareData.url || "");
     }
   };
 
@@ -74,6 +77,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
       toast.success("🦄 클립보드에 복사되었습니다!");
     } catch (error) {
       console.error("Error copying to clipboard:", error);
+      toast.error("❌ 클립보드에 복사하지 못했습니다.");
     }
   };
 
@@ -179,12 +183,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
         >
           다시하기
         </Button>
-        <Button
-          id="share-content"
-          onClick={async () => {
-            await shareContent();
-          }}
-        >
+        <Button id="share-content" onClick={shareContent}>
           이상형 공유하기
         </Button>
       </div>
