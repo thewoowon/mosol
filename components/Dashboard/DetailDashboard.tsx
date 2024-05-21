@@ -149,7 +149,7 @@ const lookLikeMap: {
     "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/dd23fb54-5f6e-493b-d270-0798fb159200/public",
 
   이도현:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/78f5b96b-22a1-4de5-cf59-ca43c84feb00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a232bdb1-dd8f-4750-c955-7c5f30728b00/public",
 
   진: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/aff4291a-19bb-4053-ac3e-8d74a0231c00/public",
 
