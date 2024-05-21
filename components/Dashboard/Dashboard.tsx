@@ -109,92 +109,92 @@ const lookLikeMap: {
   [key: string]: string;
 } = {
   카리나:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a17ee285-c6d3-4308-224f-22185697f800/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/3de3ee46-1a4c-42f1-fcb7-6cb8f4c5f500/public",
   장원영:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/206e12ec-63a8-4216-b902-08b527d1e200/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/6976cbeb-d19f-43cf-22a9-5cd8408b6b00/public",
   권은비:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/fd2ce4d0-325a-49fe-41f8-723949081e00/public",
-  수지: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/ebcefc70-1b66-4dab-0ca5-f7708e996000/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/b52f1322-8f6a-4826-2c21-9dda12cb0c00/public",
+  수지: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/6d011459-3d3f-4e87-7c02-9e0ed14cb500/public",
   강해린:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d86d7f2a-b1bb-4216-a9dc-80fbbbb7d800/public",
-  민지: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d6596b0e-b551-4650-0889-e6cf6f53bc00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/ae78925b-720f-4a18-cea8-6a108bb46b00/public",
+  민지: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/2227894f-3d33-477c-7c6a-608948fbc000/public",
   한효주:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/41745fff-75e7-46d1-b067-69861860d100/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/bc8eb79f-82fb-4880-8b9e-dbaac72ca700/public",
   아이린:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/ad791db6-0578-465b-e4f1-7ac74178d600/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/2482c056-51e3-492e-dec5-c48cc8901a00/public",
   김지원:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/595b04e7-4e4b-47a6-cfd7-54d3554a0b00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/29cc53ad-cd0e-435c-790c-e9f7b6240600/public",
   김채원:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/13c8c1ec-4e64-4c1b-d85f-67d2ceb02b00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/6b325c94-c368-4468-8475-6fb12cbf4700/public",
   아이유:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/3dc2718b-66ca-4bc1-100e-d6594a24c100/public",
-  다현: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/ad6ca952-2e92-483a-183e-0a3dbf02f400/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/f9c55bfa-2b41-4a00-3992-b142aafecd00/public",
+  다현: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/2bea5f6a-fa9d-49ca-65d2-70072aa20100/public",
 
   전효성:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d5fcd6b4-0196-4f57-ecbb-f8636b5d7e00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/87a6aeb3-fa6a-414e-c1be-c367ee568300/public",
 
   박보영:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/b63e7289-62f9-4699-b80e-76ffa2ccdd00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/5952d8c1-82a6-48ec-56ce-0d0b4d1ab400/public",
 
   한예슬:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/21615163-dbf0-4c43-01eb-4dcf38094a00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/e3156899-504e-4b8b-c15e-6609c0266d00/public",
 
   윤승아:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/12542911-c5d6-4ebd-97aa-5bcb95ee8300/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/01495c62-ffd9-4349-5604-4753e4e43900/public",
 
   한가인:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/40f6436c-945d-4154-98a1-c0415377e800/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/f8495161-7966-48be-5cbd-8cf08a68a500/public",
 
   김태희:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/46ea0a4c-7cf7-4ee4-8c5d-96cdc0481200/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/dd23fb54-5f6e-493b-d270-0798fb159200/public",
 
   이도현:
     "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/78f5b96b-22a1-4de5-cf59-ca43c84feb00/public",
 
-  진: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/b1687050-df19-45c5-9d83-27ff81dff300/public",
+  진: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/aff4291a-19bb-4053-ac3e-8d74a0231c00/public",
 
   윤두준:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/3c774b3f-3754-4b1d-e8b9-e1a394d42200/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/e3cbbb1f-bf9d-4bf3-e049-43017861af00/public",
 
   영케이:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a5c6a2a7-eb77-4dda-cb71-c217a0593600/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/54b82ec2-116d-4bac-5025-90be2cc74000/public",
 
-  뷔: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/09fcbb1b-6e8b-4863-06cd-c0a0e9ecfa00/public",
+  뷔: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/b88e0750-5e2d-4569-ee8e-f4670973bc00/public",
 
-  현빈: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/8d915a68-f887-4ef6-5f59-b9b2fe323700/public",
+  현빈: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/4583f7dd-b91d-463f-6189-6c3202645a00/public",
 
   주우재:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/28ee7540-8ead-44c1-d99f-d41f98486300/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/19659a44-b541-4ff5-c338-3d8c9ab03100/public",
 
   서강준:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a6de261c-ec00-412a-83f2-c9e4646eee00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/31e0b54c-cb2f-45e7-5a63-4c09ea240200/public",
 
   손석구:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/acfead32-c4e1-44fa-6d9f-f989af9fb300/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/8701064c-e966-43f1-f47a-46cd8a788900/public",
 
-  정국: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/e5f4c675-cd08-4d07-089b-f80146a0f700/public",
+  정국: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a8352a59-be33-45d9-1617-d6f99d06b500/public",
 
   최우식:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/034f58a4-dc50-4252-0278-90de0ef56600/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/8c69f560-6ae0-43cb-5886-f8db66315200/public",
 
   이제훈:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/07399d26-3c49-4239-c15e-055d1a4cbf00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/db6e56aa-898f-4a52-d272-cbad40978600/public",
 
   강하늘:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/3d9ade94-9136-4f95-cd78-ab5377977700/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/49d04ac6-e351-4d3f-8e16-11f5ffd52100/public",
 
-  원필: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/efdf64cb-9e17-4218-ae5b-fe956d28b900/public",
+  원필: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/7bad5034-7185-4ee4-1c98-ae3345367f00/public",
 
   남주혁:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/c3bb77d4-c3f4-4fdc-b585-675e4369d400/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/d60ac831-5a52-489e-b19b-696729c10e00/public",
 
   차은우:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/107304a2-017c-462f-fca6-8529652a0700/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/82d088a9-ebb0-4c9c-bcd6-2acfab269d00/public",
 
   박보검:
-    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/a26b584a-32ba-43c3-b360-5cf6c3f4ef00/public",
+    "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/66dee085-ff6d-4b84-97af-c85143028100/public",
 
-  송강: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/11425fd7-fb28-4969-749e-1930b0f4fa00/public",
+  송강: "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/f203ec00-0d37-4e48-9f31-e2943b141d00/public",
 };
 
 type DashboardProps = {
