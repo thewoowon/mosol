@@ -88,6 +88,7 @@ export default function RootLayout({
           content="The React Framework for the Web"
         />
         <meta name="twitter:image" content="https://nextjs.org/og.png" />
+        <link rel="icon" href="/favicon.ico" />
         <link
           rel="apple-touch-icon"
           sizes="57x57"
