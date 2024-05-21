@@ -23,7 +23,7 @@ const WaitPage = () => {
       >
         <Image
           src="/images/svgs/heart.svg"
-          alt="main"
+          alt="못해솔로"
           width={100}
           height={85}
           style={{

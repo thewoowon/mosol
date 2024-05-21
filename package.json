@@ -14,7 +14,6 @@
     "directory": "mosol"
   },
   "license": "MIT",
-  "main": "index.js",
   "licenses": [
     {
       "type": "MIT",
