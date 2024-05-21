@@ -4,4 +4,4 @@
 
 ![image](https://github.com/thewoowon/mosol/assets/60413257/bfcae908-aec1-4645-b466-b6dfd4700947)
 
--> [못해솔로 방문하기](https://mosol.chat)
+-> [못해솔로 방문하기](https://mosol.life)
