@@ -1,14 +1,77 @@
 "use client";
 
 import { BottomButton } from "@/components/Button";
+import Counter from "@/components/Counter";
+import customAxios from "@/lib/axios";
 import styled from "@emotion/styled";
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter();
+  const [count, setCount] = useState({
+    start: 0,
+    end: 0,
+  });
+
+  const { data: rankResultData, isLoading } = useQuery({
+    queryKey: ["result", "count"],
+    queryFn: () => {
+      return customAxios({
+        method: "GET",
+        url: `/result/getResultCount`,
+      }).then((res) => res.data);
+    },
+    refetchInterval: 5000,
+  });
+
+  useEffect(() => {
+    if (rankResultData) {
+      if (count.end === 0) {
+        setCount({
+          start: 0,
+          end: rankResultData.data + 10000,
+        });
+        return;
+      } else {
+        if (count.end < rankResultData.data) {
+          setCount({
+            start: count.end,
+            end: rankResultData.data + 10000,
+          });
+        }
+      }
+    }
+  }, [count.end, rankResultData]);
+
   return (
     <Container>
+      <div
+        style={{
+          position: "absolute",
+          display: "flex",
+          alignItems: "baseline",
+          marginTop: 16,
+          fontSize: "18px",
+          fontWeight: "semibold",
+          lineHeight: "24px",
+          color: "#333333",
+        }}
+      >
+        현재까지 &nbsp;{" "}
+        <span
+          style={{
+            color: "#fa6ee3",
+            fontSize: "24px",
+            fontWeight: "bold",
+          }}
+        >
+          <Counter start={count.start} end={count.end} suffix={"명"} />
+        </span>
+        이 이상형을 찾았어요!
+      </div>
       <div
         style={{
           display: "flex",
