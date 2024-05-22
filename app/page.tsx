@@ -25,6 +25,7 @@ export default function Home() {
       }).then((res) => res.data);
     },
     refetchInterval: 5000,
+    staleTime: 10000,
   });
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function Home() {
         });
         return;
       } else {
-        if (count.end < rankResultData.data) {
+        if (count.end < rankResultData.data + 10000) {
           setCount({
             start: count.end,
             end: rankResultData.data + 10000,
