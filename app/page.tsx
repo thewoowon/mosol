@@ -67,6 +67,8 @@ export default function Home() {
             color: "#fa6ee3",
             fontSize: "24px",
             fontWeight: "bold",
+            width: "100px",
+            textAlign: "right",
           }}
         >
           <Counter start={count.start} end={count.end} suffix={"명"} />
