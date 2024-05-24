@@ -51,32 +51,6 @@ export default function Home() {
     <Container>
       <div
         style={{
-          position: "absolute",
-          display: "flex",
-          alignItems: "baseline",
-          marginTop: 16,
-          fontSize: "18px",
-          fontWeight: "semibold",
-          lineHeight: "24px",
-          color: "#333333",
-        }}
-      >
-        현재까지 &nbsp;{" "}
-        <span
-          style={{
-            color: "#fa6ee3",
-            fontSize: "24px",
-            fontWeight: "bold",
-            width: "105px",
-            textAlign: "right",
-          }}
-        >
-          <Counter start={count.start} end={count.end} suffix={"명"} />
-        </span>
-        이 이상형을 찾았어요!
-      </div>
-      <div
-        style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -85,6 +59,29 @@ export default function Home() {
           flex: 1,
         }}
       >
+        <div
+          style={{
+            fontSize: "16px",
+            color: "#333333",
+            marginBottom: "16px",
+            fontWeight: 500,
+            lineHeight: 1.5,
+          }}
+        >
+          지금까지
+          <span
+            style={{
+              display: "inline-block",
+              color: "#fa6ee3",
+              fontWeight: 700,
+              width: "60px",
+              textAlign: "right",
+            }}
+          >
+            <Counter start={count.start} end={count.end} suffix={""} />
+          </span>
+          명이 이상형을 찾았어요
+        </div>
         <Image
           src="/images/svgs/main_logo.svg"
           alt="main"
@@ -97,14 +94,32 @@ export default function Home() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            marginTop: 16,
+            marginTop: "30px",
             fontSize: "16px",
             lineHeight: "24px",
             color: "#333333",
+            gap: "8px",
           }}
         >
-          <div>우리가 상상하던 이상형을 현실로</div>
-          <div>Ai가 만들어주는 나만의 이상형 찾기</div>
+          <div
+            style={{
+              fontSize: "22px",
+              fontWeight: "bold",
+              lineHeight: 1.5,
+            }}
+          >
+            나는 어떤 사람을 좋아할까?
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <div>상상하던 이상형을 현실로</div>
+            <div>Ai가 만들어주는 나만의 이상형 찾기</div>
+          </div>
         </div>
       </div>
       <Flex flexDirection="column">
