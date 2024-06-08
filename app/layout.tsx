@@ -10,6 +10,8 @@ import Analytics from "@/components/Analytics";
 import * as gtag from "@/lib/gtag";
 import Modal from "@/components/Modal";
 import Loader from "@/components/Loader";
+import I18nProvider from "@/components/Provider";
+import LanguageSwitcher from "@/components/Language";
 
 export default function RootLayout({
   children,
@@ -172,31 +174,34 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <LanguageSwitcher />
         <Analytics />
         <QueryClientProvider client={queryClient}>
           {/* <SideBar /> */}
-          <main
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              height: "100vh",
-              position: "relative",
-              overflow: "hidden",
-              maxWidth: "480px",
-              minWidth: "375px",
-              width: "100%",
-              margin: "0 auto",
-              boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-              backgroundColor: "#fff",
-            }}
-          >
-            {children}
-            <Drawer />
-            <Modal />
-            <Loader />
-          </main>
+          <I18nProvider>
+            <main
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100vh",
+                position: "relative",
+                overflow: "hidden",
+                maxWidth: "480px",
+                minWidth: "375px",
+                width: "100%",
+                margin: "0 auto",
+                boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+                backgroundColor: "#fff",
+              }}
+            >
+              {children}
+              <Drawer />
+              <Modal />
+              <Loader />
+            </main>
+          </I18nProvider>
         </QueryClientProvider>
         <GoogleAnalytics gaId={gtag.GA_TRACKING_ID || ""} />
         <GoogleTagManager gtmId={gtag.GTM_TRACKING_ID || ""} />

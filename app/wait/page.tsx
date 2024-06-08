@@ -5,9 +5,11 @@ import Typography from "@/components/Typography";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 const WaitPage = () => {
   const router = useRouter();
+  const { t, i18n } = useTranslation();
   return (
     <Container>
       <div
@@ -23,24 +25,31 @@ const WaitPage = () => {
       >
         <Image
           src="/images/svgs/heart.svg"
-          alt="못해솔로"
+          alt={t("service_name")}
           width={100}
           height={85}
           style={{
             marginBottom: "8px",
           }}
         />
-        <Typography type="h3">준비중..</Typography>
+        <Typography type="h3">{t("waiting_text")}</Typography>
         <Typography type="subtitle1" textAlign="center">
-          <span
-            style={{
-              fontWeight: "bold",
-            }}
-          >
-            이런 사람은 안돼
-          </span>
-          는 준비 중이에요
-          <br /> 빠른 시일내에 보여드릴게요 :)
+          {i18n.language === "ko" ? (
+            <>
+              <span
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                {t("intro_negative_button")}
+              </span>
+              {t("preparing_text")}
+            </>
+          ) : (
+            t("preparing_text")
+          )}
+          <br />
+          {t("asap_text")}
         </Typography>
       </div>
       <Flex flexDirection="column">
@@ -49,7 +58,7 @@ const WaitPage = () => {
             // /flow로 이동
             router.push("/flow");
           }}
-          label="이런 사람이 좋아 테스트하기"
+          label={t("waiting_button_text")}
         />
       </Flex>
     </Container>

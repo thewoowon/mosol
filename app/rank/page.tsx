@@ -11,6 +11,7 @@ import customAxios from "@/lib/axios";
 import Loader from "@/components/Loader";
 import { ResultDataType } from "@/types";
 import { useRankStore } from "@/stores/global";
+import { useTranslation } from "react-i18next";
 
 const sexArray = ["female", "male"];
 
@@ -24,6 +25,7 @@ const RankPage = () => {
   const [sexType, setSexType] = useState<"female" | "male">("female");
   const router = useRouter();
   const { setSex, resultId } = useRankStore();
+  const { t } = useTranslation();
 
   const [resultData, setResultData] = useState<ResultDataType>({
     eyeshapeStatRankData: [],
@@ -80,7 +82,7 @@ const RankPage = () => {
             />
           </svg>
         </BackArrow>
-        <div>이상형 랭킹</div>
+        <div>{t("rankPage.title")}</div>
       </Navigation>
       <Tabs
         onChange={(index) => {
@@ -88,10 +90,10 @@ const RankPage = () => {
           setSex(sexArray[index] as secType);
         }}
       >
-        <Tab label="여자 이상형">
+        <Tab label={t("rankPage.female")}>
           <Dashboard data={resultData} sex={sexType} />
         </Tab>
-        <Tab label="남자 이상형">
+        <Tab label={t("rankPage.male")}>
           <Dashboard data={resultData} sex={sexType} />
         </Tab>
       </Tabs>

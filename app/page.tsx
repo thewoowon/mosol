@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const router = useRouter();
@@ -15,6 +16,8 @@ export default function Home() {
     start: 0,
     end: 0,
   });
+
+  const { t } = useTranslation();
 
   const { data: rankResultData, isLoading } = useQuery({
     queryKey: ["result", "count"],
@@ -68,7 +71,7 @@ export default function Home() {
             lineHeight: 1.5,
           }}
         >
-          지금까지
+          {t("over")}
           <span
             style={{
               display: "inline-block",
@@ -80,13 +83,16 @@ export default function Home() {
           >
             <Counter start={count.start} end={count.end} suffix={""} />
           </span>
-          명이 이상형을 찾았어요
+          {t("match_text")}
         </div>
         <Image
           src="/images/svgs/main_logo.svg"
           alt="main"
           width={280}
           height={243}
+          style={{
+            height: "auto",
+          }}
         />
 
         <div
@@ -108,7 +114,7 @@ export default function Home() {
               lineHeight: 1.5,
             }}
           >
-            나는 어떤 사람을 좋아할까?
+            {t("main_question")}
           </div>
           <div
             style={{
@@ -117,8 +123,8 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            <div>상상하던 이상형을 현실로</div>
-            <div>Ai가 만들어주는 나만의 이상형 찾기</div>
+            <div>{t("sub_question_1")}</div>
+            <div>{t("sub_question_2")}</div>
           </div>
         </div>
       </div>
@@ -128,7 +134,7 @@ export default function Home() {
             // /flow로 이동
             router.push("/flow");
           }}
-          label="이런 사람이 좋아"
+          label={t("intro_positive_button")}
         />
         <BottomButton
           id="not-like-this-person"
@@ -137,7 +143,7 @@ export default function Home() {
             // 준비 중입니다.
             router.push("/wait");
           }}
-          label="이런 사람은 안돼"
+          label={t("intro_negative_button")}
         />
       </Flex>
     </Container>

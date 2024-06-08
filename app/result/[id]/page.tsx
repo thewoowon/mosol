@@ -10,6 +10,7 @@ import customAxios from "@/lib/axios";
 import { useLoaderStore, useRankStore } from "@/stores/global";
 import { useEffect } from "react";
 import Loader from "@/components/Loader";
+import { useTranslation } from "react-i18next";
 
 interface ResultPageProps {
   params: {
@@ -21,6 +22,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
   const router = useRouter();
   const { setResultId } = useRankStore();
   const { offLoader } = useLoaderStore();
+  const { t } = useTranslation();
 
   const { data: resultData, isLoading } = useQuery({
     queryKey: ["result", id],
@@ -64,7 +66,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
         await navigator.share(shareData);
       } catch (error) {
         console.error("Error sharing:", error);
-        toast.error("❌ 공유에 실패했습니다.");
+        toast.error(`❌ ${t("share_error")}`);
       }
     } else {
       await copyToClipboard(shareData.url || "");
@@ -74,10 +76,10 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      toast.success("🦄 클립보드에 복사되었습니다!");
+      toast.success(`🦄 ${t("clipboard_complete")}`);
     } catch (error) {
       console.error("Error copying to clipboard:", error);
-      toast.error("❌ 클립보드에 복사하지 못했습니다.");
+      toast.error(`❌ ${t("clipboard_error")}`);
     }
   };
 
@@ -111,7 +113,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
               />
             </svg>
           </div>
-          <Typography type="h4">나의 이상형은?</Typography>
+          <Typography type="h4">{t("what_is_my_ideal_type")}</Typography>
           <div
             style={{
               borderRadius: "8px",
@@ -134,31 +136,31 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
           </div>
           <Ol>
             <Li>
-              <LeftSide>성격</LeftSide>
+              <LeftSide>{t("character")}</LeftSide>
               <RightSide>{resultData.data.mbti}</RightSide>
             </Li>
             <Li>
-              <LeftSide>외모</LeftSide>
+              <LeftSide>{t("look_like")}</LeftSide>
               <RightSide>{resultData.data.lookLike}</RightSide>
             </Li>
             <Li>
-              <LeftSide>키</LeftSide>
+              <LeftSide>{t("height")}</LeftSide>
               <RightSide>{resultData.data.height}</RightSide>
             </Li>
             <Li>
-              <LeftSide>눈매</LeftSide>
+              <LeftSide>{t("eye")}</LeftSide>
               <RightSide>{resultData.data.eyeShape}</RightSide>
             </Li>
             <Li>
-              <LeftSide>얼굴상</LeftSide>
+              <LeftSide>{t("face_shape")}</LeftSide>
               <RightSide>{resultData.data.faceShape}</RightSide>
             </Li>
             <Li>
-              <LeftSide>패션</LeftSide>
+              <LeftSide>{t("fashion")}</LeftSide>
               <RightSide>{resultData.data.fashion}</RightSide>
             </Li>
             <Li>
-              <LeftSide>활동</LeftSide>
+              <LeftSide>{t("interest")}</LeftSide>
               <RightSide>{resultData.data.hobby}</RightSide>
             </Li>
           </Ol>
@@ -181,10 +183,10 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
             router.push("/");
           }}
         >
-          다시하기
+          {t("redo")}
         </Button>
         <Button id="share-content" onClick={shareContent}>
-          이상형 공유하기
+          {t("lets_share")}
         </Button>
       </div>
       <div
@@ -198,7 +200,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
           router.push("/rank");
         }}
       >
-        이상형 랭킹 보기
+        {t("go_to_ranking")}
       </div>
     </Container>
   );
@@ -283,7 +285,8 @@ const Li = styled.li`
 `;
 
 const LeftSide = styled.div`
-  width: 40px;
+  width: 100%;
+  max-width: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
