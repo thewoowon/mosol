@@ -22,6 +22,7 @@ import { useMutation } from "@tanstack/react-query";
 import customAxios from "@/lib/axios";
 import { useDrawerStore, useLoaderStore, useModalStore } from "@/stores/global";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 // 20240517 -> result를 단일로 빼서 사용하도록 수정
 // 성별&나이 -> 닮은꼴 -> 얼굴형 -> 눈매 -> 키 -> 패션 -> MBTI -> 관심사
@@ -60,6 +61,8 @@ const FlowPage = () => {
       },
     },
   });
+
+  const { t, i18n } = useTranslation();
 
   const { toggleDrawer, setOnCompleted, setIdolName } = useDrawerStore();
   const { toggleModal } = useModalStore();
@@ -149,8 +152,8 @@ const FlowPage = () => {
     if (currentIndex === 0) {
       toggleModal({
         isOpen: true,
-        title: "이상형 생성을 종료하시겠어요?",
-        description: "입력한 정보가 모두 사라집니다.",
+        title: t("end_service"),
+        description: t("warning_message"),
         onConfirm: () => {
           setIdolName("");
           router.push("/");
@@ -169,48 +172,48 @@ const FlowPage = () => {
     if (flowContext.step === "sexAndAge") {
       // 성별과 나이를 선택하지 않았을 때
       if (!flowContext.context.sex) {
-        toast.warn("🦄 성별을 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_sex")}!`);
         return false;
       }
 
       if (!flowContext.context.age) {
-        toast.warn("🦄 나이를 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_age")}!`);
         return false;
       }
     } else if (flowContext.step === "mbti") {
       if (!flowContext.context.mbti) {
-        toast.warn("🦄 MBTI을 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_character")}!`);
         return false;
       }
     } else if (flowContext.step === "lookLike") {
       if (!flowContext.context.lookLike) {
-        toast.warn("🦄 닮은꼴을 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_look")}!`);
         return false;
       }
     } else if (flowContext.step === "height") {
       if (!flowContext.context.height) {
-        toast.warn("🦄 키를 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_height")}!`);
         return false;
       }
     } else if (flowContext.step === "eyeShape") {
       if (!flowContext.context.eyeShape) {
-        toast.warn("🦄 눈매를 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_eye")}!`);
         return false;
       }
     } else if (flowContext.step === "faceShape") {
       if (!flowContext.context.faceShape) {
-        toast.warn("🦄 얼굴형을 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_face_shape")}!`);
         return false;
       }
     } else if (flowContext.step === "fashion") {
       if (!flowContext.context.fashion) {
-        toast.warn("🦄 패션을 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_fashion")}!`);
         return false;
       }
     } else {
       // 활동을 선택하지 않았을 때
       if (flowContext.context.interest.length === 0) {
-        toast.warn("🦄 활동을 선택해주세요!");
+        toast.warn(`🦄 ${t("choice_interest")}!`);
         return false;
       }
     }
@@ -259,7 +262,7 @@ const FlowPage = () => {
     onSuccess: (response: any) => {
       const { code, data } = response;
       if (code === "200") {
-        toast.success("🎉 이상형 생성에 성공했어요!");
+        toast.success(`🎉 ${t("generate_success")}`);
         // router.push(`/result/${data.id}`);
         setTimeout(() => {
           window.location.href = `/result/${data.id}`;
@@ -280,12 +283,12 @@ const FlowPage = () => {
         //   };
         // });
       } else {
-        toast.error("😭 이상형 생성에 실패했어요... 다시 시도해 주세요");
+        toast.error(`😭 ${t("generate_fail")}`);
         offLoader();
       }
     },
     onError: () => {
-      toast.error("😭 이상형 생성에 실패했어요... 다시 시도해 주세요");
+      toast.error(`😭 ${t("generate_fail")}`);
       offLoader();
     },
   });
@@ -375,7 +378,7 @@ const FlowPage = () => {
                 } = flowContext.context;
 
                 if (!age) {
-                  toast.error("😭 나이를 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_age")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "sexAndAge" as Step };
                   });
@@ -383,7 +386,7 @@ const FlowPage = () => {
                 }
 
                 if (!sex) {
-                  toast.error("😭 성별을 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_sex")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "sexAndAge" as Step };
                   });
@@ -391,7 +394,7 @@ const FlowPage = () => {
                 }
 
                 if (!mbti) {
-                  toast.error("😭 MBTI를 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_character")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "mbti" as Step };
                   });
@@ -399,7 +402,7 @@ const FlowPage = () => {
                 }
 
                 if (!lookLike) {
-                  toast.error("😭 닮은꼴을 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_look")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "lookLike" as Step };
                   });
@@ -407,7 +410,7 @@ const FlowPage = () => {
                 }
 
                 if (!height) {
-                  toast.error("😭 키를 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_height")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "height" as Step };
                   });
@@ -415,7 +418,7 @@ const FlowPage = () => {
                 }
 
                 if (!eyeShape) {
-                  toast.error("😭 눈매를 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_eye")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "eyeShape" as Step };
                   });
@@ -423,7 +426,7 @@ const FlowPage = () => {
                 }
 
                 if (!faceShape) {
-                  toast.error("😭 얼굴형을 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_face_shape")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "faceShape" as Step };
                   });
@@ -431,7 +434,7 @@ const FlowPage = () => {
                 }
 
                 if (!fashion) {
-                  toast.error("😭 패션을 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_fashion")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "fashion" as Step };
                   });
@@ -439,7 +442,7 @@ const FlowPage = () => {
                 }
 
                 if (interest.length === 0) {
-                  toast.error("😭 관심사를 선택해주세요!");
+                  toast.warn(`🦄 ${t("choice_interest")}!`);
                   setFlowContext((prev) => {
                     return { ...prev, step: "interest" as Step };
                   });
@@ -468,7 +471,7 @@ const FlowPage = () => {
                 return { ...prev, step: nextStep as Step, direction: "next" };
               });
             }}
-            label={flowContext.step === "interest" ? "완료" : "다음"}
+            label={flowContext.step === "interest" ? t("complete") : t("next")}
           />
         )}
         {flowContext.step === "lookLike" && (
@@ -491,7 +494,7 @@ const FlowPage = () => {
                 });
               });
             }}
-            label={"이중에 없어요!"}
+            label={t("not_in_here")}
           />
         )}
       </WidthBlock>
