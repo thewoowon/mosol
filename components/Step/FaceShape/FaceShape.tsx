@@ -1,9 +1,10 @@
 import Typography from "@/components/Typography";
-import { FACE_SHAPE } from "@/contants/flow";
+import { FACE_SHAPE, FACE_SHAPE_I18N } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const maleFaceList = [
   "https://imagedelivery.net/6qzLODAqs2g1LZbVYqtuQw/093c30e1-b094-44e8-059f-e04f5b9ae200/public",
@@ -30,26 +31,42 @@ const femaleFaceList = [
 
 const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
+    const { t, i18n } = useTranslation();
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">선호하는 얼굴상은?</Typography>
+          <Typography type="h3">{t("tell_me_face_shape")}</Typography>
           <Typography type="subtitle1">
-            가장 원하는{" "}
-            <span
-              style={{
-                fontWeight: 700,
-              }}
-            >
-              한가지
-            </span>
-            를 선택해주세요
+            {i18n.language === "ko" ? (
+              <>
+                가장 원하는{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  한가지
+                </span>
+                를 선택해주세요
+              </>
+            ) : (
+              <>
+                Choose{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  the Only One
+                </span>
+              </>
+            )}
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>
           <Grid>
             {flowContext.context.sex === "남자"
-              ? FACE_SHAPE["FEMALE"].map((item, index) => {
+              ? FACE_SHAPE_I18N[i18n.language]["FEMALE"].map((item, index) => {
                   return (
                     <Selection
                       key={index}
@@ -57,13 +74,13 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                         setFlowContext((prev) => {
                           return {
                             ...prev,
-                            context: { ...prev.context, faceShape: item },
+                            context: { ...prev.context, faceShape: item.value },
                           };
                         });
                       }}
                       selected={
                         flowContext.context &&
-                        flowContext.context.faceShape === item
+                        flowContext.context.faceShape === item.value
                       }
                     >
                       <div
@@ -80,7 +97,7 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                       >
                         <Image
                           src={femaleFaceList[index]}
-                          alt={item}
+                          alt={item.label}
                           fill
                           sizes="100%"
                           priority
@@ -95,12 +112,12 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                           alignItems: "center",
                         }}
                       >
-                        {item}
+                        {item.label}
                       </div>
                     </Selection>
                   );
                 })
-              : FACE_SHAPE["MALE"].map((item, index) => {
+              : FACE_SHAPE_I18N[i18n.language]["MALE"].map((item, index) => {
                   return (
                     <Selection
                       key={index}
@@ -108,13 +125,13 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                         setFlowContext((prev) => {
                           return {
                             ...prev,
-                            context: { ...prev.context, faceShape: item },
+                            context: { ...prev.context, faceShape: item.value },
                           };
                         });
                       }}
                       selected={
                         flowContext.context &&
-                        flowContext.context.faceShape === item
+                        flowContext.context.faceShape === item.value
                       }
                     >
                       <div
@@ -131,7 +148,7 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                       >
                         <Image
                           src={maleFaceList[index]}
-                          alt={item}
+                          alt={item.label}
                           fill
                           sizes="100%"
                           priority
@@ -146,7 +163,7 @@ const FaceShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                           alignItems: "center",
                         }}
                       >
-                        {item}
+                        {item.label}
                       </div>
                     </Selection>
                   );

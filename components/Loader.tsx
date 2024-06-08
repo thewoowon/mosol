@@ -2,10 +2,11 @@ import { useLoaderStore } from "@/stores/global";
 import React from "react";
 import styled from "@emotion/styled";
 import Typography from "./Typography";
+import { useTranslation } from "react-i18next";
 
 const Loader = () => {
   const { isLoading } = useLoaderStore();
-
+  const { t } = useTranslation();
   if (!isLoading) {
     return null;
   }
@@ -26,9 +27,11 @@ const Loader = () => {
           />
         </svg>
       </div>
-      <Typography type="h3">{"이상형 분석중..."}</Typography>
+      <Typography type="h3">
+        {t("ideal_type") + " " + t("analyzing")}...
+      </Typography>
       <Typography type="body1" textAlign="center">
-        내게 꼭 맞는 이상형이 <br /> 만들어지고 있어요!
+        {t("analyzing_sub_text_1")} <br /> {t("analyzing_sub_text_2")}
       </Typography>
     </Container>
   );

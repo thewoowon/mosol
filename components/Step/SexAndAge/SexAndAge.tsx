@@ -1,30 +1,30 @@
 import RadioButton from "@/components/RadioButton";
 import Typography from "@/components/Typography";
-import { AGE_RANGE, SEX_ITEMS } from "@/contants/flow";
+import {
+  AGE_RANGE,
+  AGE_RANGE_I18N,
+  SEX_ITEMS,
+  SEX_ITEMS_I18N,
+} from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
+    const { t, i18n } = useTranslation();
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">성별과 나이를 알려주세요.</Typography>
-          <Typography type="subtitle1">
-            이상형 결과를 위해 활용됩니다
-          </Typography>
+          <Typography type="h3">{t("tell_me_sex_and_age")}</Typography>
+          <Typography type="subtitle1">{t("make_for_text")}</Typography>
         </WidthBlock>
         <WidthHeightBlock gap={84}>
           <WidthBlock>
-            <Typography type="h5">성별</Typography>
+            <Typography type="h5">{t("sex")}</Typography>
             <RadioButton
-              list={SEX_ITEMS.map((item, index) => {
-                return {
-                  label: item[0],
-                  value: item,
-                };
-              })}
+              list={SEX_ITEMS_I18N[i18n.language].map((item, index) => item)}
               onChange={(value) => {
                 setFlowContext((prev) => {
                   return {
@@ -37,9 +37,9 @@ const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
             />
           </WidthBlock>
           <WidthBlock>
-            <Typography type="h5">나이</Typography>
+            <Typography type="h5">{t("age")}</Typography>
             <Grid>
-              {AGE_RANGE.map((item, index) => {
+              {AGE_RANGE_I18N[i18n.language].map((item, index) => {
                 return (
                   <Button
                     key={index}
@@ -47,15 +47,16 @@ const SexAndAge = React.forwardRef<HTMLDivElement, CommonStepType>(
                       setFlowContext((prev) => {
                         return {
                           ...prev,
-                          context: { ...prev.context, age: item },
+                          context: { ...prev.context, age: item.value },
                         };
                       });
                     }}
                     selected={
-                      flowContext.context && flowContext.context.age === item
+                      flowContext.context &&
+                      flowContext.context.age === item.value
                     }
                   >
-                    {item}
+                    {item.label}
                   </Button>
                 );
               })}

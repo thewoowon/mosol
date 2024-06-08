@@ -2,10 +2,13 @@ import { useModalStore } from "@/stores/global";
 import React from "react";
 import styled from "@emotion/styled";
 import Typography from "../Typography";
+import { useTranslation } from "react-i18next";
 
 const Modal = () => {
   const { isOpen, title, description, onConfirm, toggleModal } =
     useModalStore();
+
+  const { t } = useTranslation();
 
   if (!isOpen) {
     return null;
@@ -43,7 +46,7 @@ const Modal = () => {
             }}
             skeleton
           >
-            취소
+            {t("cancel")}
           </Button>
           <Button
             onClick={() => {
@@ -56,7 +59,7 @@ const Modal = () => {
               });
             }}
           >
-            확인
+            {t("confirm")}
           </Button>
         </Flex>
       </div>

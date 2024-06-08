@@ -1,30 +1,47 @@
 import Typography from "@/components/Typography";
-import { HEIGHT_RANGE } from "@/contants/flow";
+import { HEIGHT_RANGE, HEIGHT_RANGE_I18N } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
+    const { t, i18n } = useTranslation();
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">선호하는 키는?</Typography>
+          <Typography type="h3">{t("tell_me_height")}</Typography>
           <Typography type="subtitle1">
-            가장 원하는{" "}
-            <span
-              style={{
-                fontWeight: 700,
-              }}
-            >
-              한가지
-            </span>
-            를 선택해주세요
+            {i18n.language === "ko" ? (
+              <>
+                가장 원하는{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  한가지
+                </span>
+                를 선택해주세요
+              </>
+            ) : (
+              <>
+                Choose{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  the Only One
+                </span>
+              </>
+            )}
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>
           {flowContext.context.sex === "남자"
-            ? HEIGHT_RANGE["FEMALE"].map((item, index) => {
+            ? HEIGHT_RANGE_I18N[i18n.language]["FEMALE"].map((item, index) => {
                 return (
                   <Selection
                     key={index}
@@ -32,19 +49,20 @@ const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
                       setFlowContext((prev) => {
                         return {
                           ...prev,
-                          context: { ...prev.context, height: item },
+                          context: { ...prev.context, height: item.value },
                         };
                       });
                     }}
                     selected={
-                      flowContext.context && flowContext.context.height === item
+                      flowContext.context &&
+                      flowContext.context.height === item.value
                     }
                   >
-                    <div>{item}</div>
+                    <div>{item.label}</div>
                   </Selection>
                 );
               })
-            : HEIGHT_RANGE["MALE"].map((item, index) => {
+            : HEIGHT_RANGE_I18N[i18n.language]["MALE"].map((item, index) => {
                 return (
                   <Selection
                     key={index}
@@ -52,15 +70,16 @@ const Height = React.forwardRef<HTMLDivElement, CommonStepType>(
                       setFlowContext((prev) => {
                         return {
                           ...prev,
-                          context: { ...prev.context, height: item },
+                          context: { ...prev.context, height: item.value },
                         };
                       });
                     }}
                     selected={
-                      flowContext.context && flowContext.context.height === item
+                      flowContext.context &&
+                      flowContext.context.height === item.value
                     }
                   >
-                    <div>{item}</div>
+                    <div>{item.label}</div>
                   </Selection>
                 );
               })}

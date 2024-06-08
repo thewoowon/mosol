@@ -1,20 +1,22 @@
 import Typography from "@/components/Typography";
-import { INTEREST } from "@/contants/flow";
+import { INTEREST, INTEREST_I18N } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
-    const getKeyName = (key: string) => {
+    const { t, i18n } = useTranslation();
+    const getKeyName = (key: string, language: string) => {
       switch (key) {
         case "art":
-          return "문화예술";
+          return language === "ko" ? "문화예술" : "Art";
         case "sport":
-          return "스포츠";
+          return language === "ko" ? "스포츠" : "Sport";
         case "experience":
-          return "체험";
+          return language === "ko" ? "체험" : "Experience";
         default:
           return "";
       }
@@ -22,79 +24,102 @@ const Interest = React.forwardRef<HTMLDivElement, CommonStepType>(
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">함께하고 싶은 활동은?</Typography>
+          <Typography type="h3">{t("tell_me_interest")}</Typography>
           <Typography type="subtitle1">
-            가장 원하는{" "}
-            <span
-              style={{
-                fontWeight: 700,
-              }}
-            >
-              두 가지
-            </span>
-            를 선택해주세요
+            {i18n.language === "ko" ? (
+              <>
+                가장 원하는{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  두가지
+                </span>
+                를 선택해주세요
+              </>
+            ) : (
+              <>
+                Choose{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  Two Things
+                </span>
+              </>
+            )}
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>
           <Grid>
-            {Object.keys(INTEREST).map((category, index1) => (
-              <div
-                key={index1}
-                style={{
-                  borderBottom: "1px solid #d2d5d6",
-                  paddingBottom: "16px",
-                  marginBottom: "20px",
-                  height: "fit-content",
-                }}
-              >
-                <Category>{getKeyName(category)}</Category>
+            {Object.keys(INTEREST_I18N[i18n.language]).map(
+              (category, index1) => (
                 <div
+                  key={index1}
                   style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    gap: "8px",
+                    borderBottom: "1px solid #d2d5d6",
+                    paddingBottom: "16px",
+                    marginBottom: "20px",
+                    height: "fit-content",
                   }}
                 >
-                  {INTEREST[category].map((item, index2) => {
-                    return (
-                      <Selection
-                        key={index2}
-                        onClick={() => {
-                          // 3개 이상 선택 불가
+                  <Category>{getKeyName(category, i18n.language)}</Category>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "8px",
+                    }}
+                  >
+                    {INTEREST_I18N[i18n.language][category].map(
+                      (item, index2) => {
+                        return (
+                          <Selection
+                            key={index2}
+                            onClick={() => {
+                              // 3개 이상 선택 불가
 
-                          if (
-                            flowContext.context.interest.length >= 2 &&
-                            !flowContext.context.interest.includes(item)
-                          ) {
-                            toast.warn("🦄 최대 2개까지 선택 가능합니다!");
-                            return;
-                          }
-                          setFlowContext((prev) => {
-                            return {
-                              ...prev,
-                              context: {
-                                ...prev.context,
-                                interest: prev.context.interest.includes(item)
-                                  ? prev.context.interest.filter(
-                                      (interest) => interest !== item,
+                              if (
+                                flowContext.context.interest.length >= 2 &&
+                                !flowContext.context.interest.includes(
+                                  item.value,
+                                )
+                              ) {
+                                toast.warn("🦄 최대 2개까지 선택 가능합니다!");
+                                return;
+                              }
+                              setFlowContext((prev) => {
+                                return {
+                                  ...prev,
+                                  context: {
+                                    ...prev.context,
+                                    interest: prev.context.interest.includes(
+                                      item.value,
                                     )
-                                  : [...prev.context.interest, item],
-                              },
-                            };
-                          });
-                        }}
-                        selected={
-                          flowContext.context &&
-                          flowContext.context.interest.includes(item)
-                        }
-                      >
-                        {item}
-                      </Selection>
-                    );
-                  })}
+                                      ? prev.context.interest.filter(
+                                          (interest) => interest !== item.value,
+                                        )
+                                      : [...prev.context.interest, item.value],
+                                  },
+                                };
+                              });
+                            }}
+                            selected={
+                              flowContext.context &&
+                              flowContext.context.interest.includes(item.value)
+                            }
+                          >
+                            {item.label}
+                          </Selection>
+                        );
+                      },
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ),
+            )}
           </Grid>
         </WidthHeightBlock>
       </Container>

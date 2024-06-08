@@ -4,24 +4,41 @@ import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
+    const { t, i18n } = useTranslation();
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">좋아하는 외모는?</Typography>
+          <Typography type="h3">{t("tell_me_look")}</Typography>
           <Typography type="subtitle1">
-            가장 원하는{" "}
-            <span
-              style={{
-                fontWeight: 700,
-              }}
-            >
-              한가지
-            </span>
-            를 선택해주세요
+            {i18n.language === "ko" ? (
+              <>
+                가장 원하는{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  한가지
+                </span>
+                를 선택해주세요
+              </>
+            ) : (
+              <>
+                Choose{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  the Only One
+                </span>
+              </>
+            )}
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>
@@ -33,14 +50,14 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                       key={index}
                       onClick={() => {
                         const randomString = [
-                          "저도 좋아요",
-                          "매력 만점~",
-                          "힙하다 힙해",
-                          "존예!",
-                          "홀리댐!",
+                          t("interjection_1"),
+                          t("interjection_2"),
+                          t("interjection_3"),
+                          t("interjection_4"),
+                          t("interjection_5"),
                         ];
                         toast.success(
-                          `👍 ${item.name}! ${
+                          `👍 ${i18n.language === "ko" ? item.name : item.enName}! ${
                             randomString[
                               Math.floor(Math.random() * randomString.length)
                             ]
@@ -87,7 +104,7 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                           alignItems: "center",
                         }}
                       >
-                        {item.name}
+                        {i18n.language === "ko" ? item.name : item.enName}
                       </div>
                     </Selection>
                   );
@@ -98,14 +115,14 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                       key={index}
                       onClick={() => {
                         const randomString = [
-                          "저도 좋아요",
-                          "매력 만점~",
-                          "힙하다 힙해",
-                          "존잘!",
-                          "본눈살게요.",
+                          t("interjection_1"),
+                          t("interjection_2"),
+                          t("interjection_3"),
+                          t("interjection_4"),
+                          t("interjection_5"),
                         ];
                         toast.success(
-                          `👍 ${item.name}! ${
+                          `👍 ${i18n.language === "ko" ? item.name : item.enName}! ${
                             randomString[
                               Math.floor(Math.random() * randomString.length)
                             ]
@@ -152,7 +169,7 @@ const LookLike = React.forwardRef<HTMLDivElement, CommonStepType>(
                           alignItems: "center",
                         }}
                       >
-                        {item.name}
+                        {i18n.language === "ko" ? item.name : item.enName}
                       </div>
                     </Selection>
                   );

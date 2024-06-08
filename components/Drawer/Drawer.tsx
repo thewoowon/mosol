@@ -2,10 +2,13 @@ import { useDrawerStore } from "@/stores/global";
 import React from "react";
 import styled from "@emotion/styled";
 import Typography from "../Typography";
+import { useTranslation } from "react-i18next";
 
 const Drawer = () => {
   const { isOpen, idolName, setIdolName, toggleDrawer, onCompleted } =
     useDrawerStore();
+
+  const { t } = useTranslation();
 
   if (!isOpen) {
     return null;
@@ -50,7 +53,7 @@ const Drawer = () => {
               alignItems: "center",
             }}
           >
-            <div>좋아하는 인물 입력</div>
+            <div>{t("input_another_title")}</div>
             <div
               style={{
                 position: "absolute",
@@ -102,10 +105,10 @@ const Drawer = () => {
             flex: 1,
           }}
         >
-          <Typography type="h5">이상형 이름을 입력해주세요.</Typography>
+          <Typography type="h5">{t("input_another_comment")}</Typography>
           <Input
             type="text"
-            placeholder="이름 입력"
+            placeholder={t("input_another_placeholder")}
             value={idolName}
             onChange={(e) => {
               setIdolName(e.target.value);
@@ -146,7 +149,7 @@ const Drawer = () => {
                   onCompleted(idolName);
                 }}
               >
-                다음
+                {t("next")}
               </button>
             )}
           </div>

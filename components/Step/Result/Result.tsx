@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 
 const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
@@ -12,6 +13,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
     const { toggleModal } = useModalStore();
     const { setResultId } = useRankStore();
     const router = useRouter();
+    const { t } = useTranslation();
 
     const shareContent = async () => {
       const shareData: ShareData = {
@@ -75,7 +77,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
               />
             </svg>
           </div>
-          <Typography type="h5">나의 이상형은?</Typography>
+          <Typography type="h5">{t("what_is_my_ideal_type")}</Typography>
           <div
             style={{
               borderRadius: "8px",
@@ -98,31 +100,31 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
           </div>
           <Ol>
             <Li>
-              <LeftSide>성격</LeftSide>
+              <LeftSide>{t("character")}</LeftSide>
               <RightSide>{flowContext.context.mbti}</RightSide>
             </Li>
             <Li>
-              <LeftSide>외모</LeftSide>
+              <LeftSide>{t("look_like")}</LeftSide>
               <RightSide>{flowContext.context.lookLike}</RightSide>
             </Li>
             <Li>
-              <LeftSide>키</LeftSide>
+              <LeftSide>{t("height")}</LeftSide>
               <RightSide>{flowContext.context.height}</RightSide>
             </Li>
             <Li>
-              <LeftSide>눈매</LeftSide>
+              <LeftSide>{t("eye")}</LeftSide>
               <RightSide>{flowContext.context.eyeShape}</RightSide>
             </Li>
             <Li>
-              <LeftSide>얼굴상</LeftSide>
+              <LeftSide>{t("face_shape")}</LeftSide>
               <RightSide>{flowContext.context.faceShape}</RightSide>
             </Li>
             <Li>
-              <LeftSide>패션</LeftSide>
+              <LeftSide>{t("fashion")}</LeftSide>
               <RightSide>{flowContext.context.fashion}</RightSide>
             </Li>
             <Li>
-              <LeftSide>활동</LeftSide>
+              <LeftSide>{t("interest")}</LeftSide>
               <RightSide>{flowContext.context.interest.join(", ")}</RightSide>
             </Li>
           </Ol>
@@ -143,17 +145,17 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
             onClick={() => {
               toggleModal({
                 isOpen: true,
-                title: "이상형 생성을 다시 하시겠어요? 😚",
-                description: "입력한 정보가 모두 사라집니다.",
+                title: t("end_service"),
+                description: t("warning_message"),
                 onConfirm: () => {
                   router.push("/");
                 },
               });
             }}
           >
-            다시하기
+            {t("redo")}
           </Button>
-          <Button onClick={shareContent}>내 이상형 공유하기</Button>
+          <Button onClick={shareContent}>{t("lets_share")}</Button>
         </div>
         <div
           style={{
@@ -166,7 +168,7 @@ const Result = React.forwardRef<HTMLDivElement, CommonStepType>(
             router.push("/rank");
           }}
         >
-          이상형 랭킹 보기
+          {t("go_to_ranking")}
         </div>
       </Container>
     );

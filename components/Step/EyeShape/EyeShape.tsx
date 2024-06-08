@@ -1,8 +1,9 @@
 import Typography from "@/components/Typography";
-import { EYES_TYPE } from "@/contants/flow";
+import { EYES_TYPE, EYES_TYPE_I18N } from "@/contants/flow";
 import { CommonStepType } from "@/types";
 import styled from "@emotion/styled";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export const getEyeSvg = (type: string): React.ReactNode => {
   switch (type) {
@@ -223,25 +224,41 @@ export const getEyeSvg = (type: string): React.ReactNode => {
 
 const EyeShape = React.forwardRef<HTMLDivElement, CommonStepType>(
   ({ setFlowContext, flowContext }, ref) => {
+    const { t, i18n } = useTranslation();
     return (
       <Container ref={ref}>
         <WidthBlock gap={6}>
-          <Typography type="h3">선호하는 눈매는?</Typography>
+          <Typography type="h3">{t("tell_me_eye")}</Typography>
           <Typography type="subtitle1">
-            가장 원하는{" "}
-            <span
-              style={{
-                fontWeight: 700,
-              }}
-            >
-              한가지
-            </span>
-            를 선택해주세요
+            {i18n.language === "ko" ? (
+              <>
+                가장 원하는{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  한가지
+                </span>
+                를 선택해주세요
+              </>
+            ) : (
+              <>
+                Choose{" "}
+                <span
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  the Only One
+                </span>
+              </>
+            )}
           </Typography>
         </WidthBlock>
         <WidthHeightBlock>
           <Grid>
-            {EYES_TYPE.map((item, index) => {
+            {EYES_TYPE_I18N[i18n.language].map((item, index) => {
               return (
                 <Selection
                   key={index}
@@ -249,17 +266,18 @@ const EyeShape = React.forwardRef<HTMLDivElement, CommonStepType>(
                     setFlowContext((prev) => {
                       return {
                         ...prev,
-                        context: { ...prev.context, eyeShape: item },
+                        context: { ...prev.context, eyeShape: item.value },
                       };
                     });
                   }}
                   selected={
-                    flowContext.context && flowContext.context.eyeShape === item
+                    flowContext.context &&
+                    flowContext.context.eyeShape === item.value
                   }
                 >
-                  {getEyeSvg(item)}
+                  {getEyeSvg(item.value)}
                   <Divider />
-                  <div>{item}</div>
+                  <div>{item.label}</div>
                 </Selection>
               );
             })}
