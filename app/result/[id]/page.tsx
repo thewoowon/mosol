@@ -11,6 +11,7 @@ import { useLoaderStore, useRankStore } from "@/stores/global";
 import { useEffect } from "react";
 import Loader from "@/components/Loader";
 import { useTranslation } from "react-i18next";
+import { KEYWORD_WIKI } from "@/contants/flow";
 
 interface ResultPageProps {
   params: {
@@ -22,7 +23,7 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
   const router = useRouter();
   const { setResultId } = useRankStore();
   const { offLoader } = useLoaderStore();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { data: resultData, isLoading } = useQuery({
     queryKey: ["result", id],
@@ -141,27 +142,63 @@ const ResultPage = ({ params: { id } }: ResultPageProps) => {
             </Li>
             <Li>
               <LeftSide>{t("look_like")}</LeftSide>
-              <RightSide>{resultData.data.lookLike}</RightSide>
+              <RightSide>
+                {i18n.language !== "ko"
+                  ? KEYWORD_WIKI[resultData.data.lookLike]
+                  : resultData.data.lookLike}
+              </RightSide>
             </Li>
             <Li>
               <LeftSide>{t("height")}</LeftSide>
-              <RightSide>{resultData.data.height}</RightSide>
+              <RightSide>
+                {i18n.language !== "ko"
+                  ? KEYWORD_WIKI[resultData.data.height]
+                  : resultData.data.height}
+              </RightSide>
             </Li>
             <Li>
               <LeftSide>{t("eye")}</LeftSide>
-              <RightSide>{resultData.data.eyeShape}</RightSide>
+              <RightSide>
+                {i18n.language !== "ko"
+                  ? KEYWORD_WIKI[resultData.data.eyeShape]
+                  : resultData.data.eyeShape}
+              </RightSide>
             </Li>
             <Li>
               <LeftSide>{t("face_shape")}</LeftSide>
-              <RightSide>{resultData.data.faceShape}</RightSide>
+              <RightSide>
+                {i18n.language !== "ko"
+                  ? KEYWORD_WIKI[resultData.data.faceShape]
+                  : resultData.data.faceShape}
+              </RightSide>
             </Li>
             <Li>
               <LeftSide>{t("fashion")}</LeftSide>
-              <RightSide>{resultData.data.fashion}</RightSide>
+              <RightSide>
+                {i18n.language !== "ko"
+                  ? KEYWORD_WIKI[resultData.data.fashion]
+                  : resultData.data.fashion}
+              </RightSide>
             </Li>
             <Li>
               <LeftSide>{t("interest")}</LeftSide>
-              <RightSide>{resultData.data.hobby}</RightSide>
+              <RightSide>
+                {i18n.language !== "ko"
+                  ? resultData.data.hobby
+                      .split(",")
+                      .map((hobby: string, index: number) => {
+                        // 마지막 쉼표 제거
+                        if (
+                          index ===
+                          resultData.data.hobby.split(",").length - 1
+                        ) {
+                          return KEYWORD_WIKI[hobby.trim()];
+                        } else {
+                          return KEYWORD_WIKI[hobby.trim()] + ", ";
+                        }
+                      })
+                  : resultData.data.hobby}
+              </RightSide>
             </Li>
           </Ol>
         </Idol>
