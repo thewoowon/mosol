@@ -4,6 +4,8 @@ import { ResultDataType } from "@/types";
 import Image from "next/image";
 import { getEyeSvg } from "../Step/EyeShape/EyeShape";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { KEYWORD_WIKI } from "@/contants/flow";
 
 const mbtiMap: {
   [key: string]: string;
@@ -259,11 +261,12 @@ const CommonHeader = ({ title, link }: { title: string; link?: string }) => {
 };
 
 const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
+  const { t, i18n } = useTranslation();
   return (
     <Container>
       {category === "mbti" && (
         <MBTI>
-          <CommonHeader title="성격" />
+          <CommonHeader title={t("character")} />
           <Ol>
             {data.mbtiStatRankData.map((item, index) => {
               return (
@@ -297,7 +300,9 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {mbtiMap[item.category]}
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category]
+                      : mbtiMap[item.category]}
                   </div>
                 </Li>
               );
@@ -308,7 +313,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
 
       {category === "lookLike" && (
         <LookLike>
-          <CommonHeader title="외모" />
+          <CommonHeader title={t("look_like")} />
           <Grid columns={3}>
             {data.looklikeStatRankData.map((item, index) => {
               return (
@@ -345,7 +350,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                           alignItems: "center",
                         }}
                       >
-                        준비중입니다 🤭
+                        {t("waiting_text")} 🤭
                       </div>
                     )}
                   </div>
@@ -357,7 +362,9 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                       alignItems: "center",
                     }}
                   >
-                    {item.category}
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category] || item.category
+                      : item.category}
                   </div>
                 </LookLikeElement>
               );
@@ -368,7 +375,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
 
       {category === "height" && (
         <Height>
-          <CommonHeader title="키" />
+          <CommonHeader title={t("height")} />
           {data.heightStatRankData.length > 0 ? (
             <Grid columns={2}>
               {data.heightStatRankData.map((item, index) => {
@@ -398,7 +405,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
 
       {category === "eyeShape" && (
         <EyeShape>
-          <CommonHeader title="눈매" />
+          <CommonHeader title={t("eye")} />
           <Grid columns={2}>
             {data.eyeshapeStatRankData.map((item, index) => {
               return (
@@ -406,7 +413,11 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                   <RankTag isReward={index < 3}>{index + 1}</RankTag>
                   {getEyeSvg(item.category)}
                   <Divider />
-                  <div>{item.category}</div>
+                  <div>
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category]
+                      : item.category}
+                  </div>
                 </EyeShapeElement>
               );
             })}
@@ -416,7 +427,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
 
       {category === "faceShape" && (
         <FaceShape>
-          <CommonHeader title="얼굴상" />
+          <CommonHeader title={t("face_shape")} />
           <Grid columns={3}>
             {data.faceshapeStatRankData.map((item, index) => {
               return (
@@ -459,7 +470,9 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                       alignItems: "center",
                     }}
                   >
-                    {item.category}
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category]
+                      : item.category}
                   </div>
                 </FaceShapeElement>
               );
@@ -470,7 +483,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
 
       {category === "fashion" && (
         <Fashion>
-          <CommonHeader title="패션" />
+          <CommonHeader title={t("fashion")} />
           <Grid columns={2}>
             {data.fashionStatRankData.map((item, index) => {
               return (
@@ -513,7 +526,9 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                       alignItems: "center",
                     }}
                   >
-                    {item.category}
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category]
+                      : item.category}
                   </div>
                 </FashionElement>
               );
@@ -524,7 +539,7 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
 
       {category === "interest" && (
         <Interest>
-          <CommonHeader title="활동" />
+          <CommonHeader title={t("interest")} />
           <Ol>
             {data.hobbyStatRankData.map((item, index) => {
               return (
@@ -542,7 +557,9 @@ const DetailDashboard = ({ data, category, sex }: DashboardProps) => {
                       margin: "0px 12px 0 16px",
                     }}
                   >
-                    {item.category}
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category]
+                      : item.category}
                   </div>
                 </Li>
               );

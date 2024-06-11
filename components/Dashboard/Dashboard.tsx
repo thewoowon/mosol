@@ -4,6 +4,8 @@ import { ResultDataType } from "@/types";
 import Image from "next/image";
 import { getEyeSvg } from "../Step/EyeShape/EyeShape";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
+import { KEYWORD_WIKI } from "@/contants/flow";
 
 const mbtiMap: {
   [key: string]: string;
@@ -203,6 +205,7 @@ type DashboardProps = {
 };
 
 const CommonHeader = ({ title, link }: { title: string; link?: string }) => {
+  const { t } = useTranslation();
   return (
     <div
       style={{
@@ -236,7 +239,7 @@ const CommonHeader = ({ title, link }: { title: string; link?: string }) => {
           }}
           href={link}
         >
-          {"더보기"}
+          {t("more")}
           <svg
             width="6"
             height="10"
@@ -258,10 +261,11 @@ const CommonHeader = ({ title, link }: { title: string; link?: string }) => {
 };
 
 const Dashboard = ({ data, sex }: DashboardProps) => {
+  const { t, i18n } = useTranslation();
   return (
     <Container>
       <MBTI>
-        <CommonHeader title="성격" link={`/rank/mbti?sex=${sex}`} />
+        <CommonHeader title={t("character")} link={`/rank/mbti?sex=${sex}`} />
         <Ol>
           {data.mbtiStatRankData.slice(0, 5).map((item, index) => {
             return (
@@ -292,7 +296,9 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {mbtiMap[item.category]}
+                  {i18n.language !== "ko"
+                    ? KEYWORD_WIKI[item.category]
+                    : mbtiMap[item.category]}
                 </div>
               </Li>
             );
@@ -301,7 +307,10 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
       </MBTI>
       {/* 외모 */}
       <LookLike>
-        <CommonHeader title="외모" link={`/rank/lookLike?sex=${sex}`} />
+        <CommonHeader
+          title={t("look_like")}
+          link={`/rank/lookLike?sex=${sex}`}
+        />
         <Grid columns={3}>
           {data.looklikeStatRankData.slice(0, 5).map((item, index) => {
             return (
@@ -338,7 +347,7 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                         alignItems: "center",
                       }}
                     >
-                      준비중입니다 🤭
+                      {t("waiting_text")} 🤭
                     </div>
                   )}
                 </div>
@@ -350,7 +359,9 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                     alignItems: "center",
                   }}
                 >
-                  {item.category}
+                  {i18n.language !== "ko"
+                    ? KEYWORD_WIKI[item.category] || item.category
+                    : item.category}
                 </div>
               </LookLikeElement>
             );
@@ -359,14 +370,18 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
       </LookLike>
       {/* 키 */}
       <Height>
-        <CommonHeader title="키" />
+        <CommonHeader title={t("height")} />
         {data.heightStatRankData.length > 0 ? (
           <Grid columns={2}>
             {data.heightStatRankData.slice(0, 5).map((item, index) => {
               return (
                 <HeightElement key={index}>
                   <RankTag isReward={index < 3}>{index + 1}</RankTag>
-                  <div>{item.category}</div>
+                  <div>
+                    {i18n.language !== "ko"
+                      ? KEYWORD_WIKI[item.category]
+                      : item.category}
+                  </div>
                 </HeightElement>
               );
             })}
@@ -387,7 +402,7 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
       </Height>
       {/* 눈매 */}
       <EyeShape>
-        <CommonHeader title="눈매" />
+        <CommonHeader title={t("eye")} />
         <Grid columns={2}>
           {data.eyeshapeStatRankData.slice(0, 5).map((item, index) => {
             return (
@@ -395,7 +410,11 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                 <RankTag isReward={index < 3}>{index + 1}</RankTag>
                 {getEyeSvg(item.category)}
                 <Divider />
-                <div>{item.category}</div>
+                <div>
+                  {i18n.language !== "ko"
+                    ? KEYWORD_WIKI[item.category]
+                    : item.category}
+                </div>
               </EyeShapeElement>
             );
           })}
@@ -403,7 +422,10 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
       </EyeShape>
       {/* 얼굴상 */}
       <FaceShape>
-        <CommonHeader title="얼굴상" link={`/rank/faceShape?sex=${sex}`} />
+        <CommonHeader
+          title={t("face_shape")}
+          link={`/rank/faceShape?sex=${sex}`}
+        />
         <Grid columns={3}>
           {data.faceshapeStatRankData.slice(0, 5).map((item, index) => {
             return (
@@ -446,7 +468,9 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                     alignItems: "center",
                   }}
                 >
-                  {item.category}
+                  {i18n.language !== "ko"
+                    ? KEYWORD_WIKI[item.category]
+                    : item.category}
                 </div>
               </FaceShapeElement>
             );
@@ -455,7 +479,7 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
       </FaceShape>
       {/* 패션 */}
       <Fashion>
-        <CommonHeader title="패션" link={`/rank/fashion?sex=${sex}`} />
+        <CommonHeader title={t("fashion")} link={`/rank/fashion?sex=${sex}`} />
         <Grid columns={2}>
           {data.fashionStatRankData.slice(0, 5).map((item, index) => {
             return (
@@ -498,7 +522,9 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                     alignItems: "center",
                   }}
                 >
-                  {item.category}
+                  {i18n.language !== "ko"
+                    ? KEYWORD_WIKI[item.category]
+                    : item.category}
                 </div>
               </FashionElement>
             );
@@ -507,7 +533,10 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
       </Fashion>
       {/* 관심사 */}
       <Interest>
-        <CommonHeader title="활동" link={`/rank/interest?sex=${sex}`} />
+        <CommonHeader
+          title={t("interest")}
+          link={`/rank/interest?sex=${sex}`}
+        />
         <Ol>
           {data.hobbyStatRankData.slice(0, 5).map((item, index) => {
             return (
@@ -522,7 +551,9 @@ const Dashboard = ({ data, sex }: DashboardProps) => {
                     margin: "0px 12px 0 16px",
                   }}
                 >
-                  {item.category}
+                  {i18n.language !== "ko"
+                    ? KEYWORD_WIKI[item.category]
+                    : item.category}
                 </div>
               </Li>
             );

@@ -9,6 +9,7 @@ import customAxios from "@/lib/axios";
 import Loader from "@/components/Loader";
 import { ResultDataType } from "@/types";
 import { useRankStore } from "@/stores/global";
+import { useTranslation } from "react-i18next";
 
 type RankDetailPageProps = {
   params: {
@@ -17,20 +18,34 @@ type RankDetailPageProps = {
 };
 
 const categoryMap: {
-  [key: string]: string;
+  [key: string]: {
+    [key: string]: string;
+  };
 } = {
-  mbti: "성격",
-  lookLike: "외모",
-  height: "키",
-  eyeShape: "눈 모양",
-  faceShape: "얼굴상",
-  fashion: "패션",
-  interest: "활동",
+  ko: {
+    mbti: "성격",
+    lookLike: "외모",
+    height: "키",
+    eyeShape: "눈 모양",
+    faceShape: "얼굴상",
+    fashion: "패션",
+    interest: "활동",
+  },
+  en: {
+    mbti: "MBTI",
+    lookLike: "Look Like",
+    height: "Height",
+    eyeShape: "Eye Shape",
+    faceShape: "Face Shape",
+    fashion: "Fashion",
+    interest: "Interest",
+  },
 };
 
 const RankDetailPage = ({ params: { category } }: RankDetailPageProps) => {
   const router = useRouter();
   const { sex } = useRankStore();
+  const { t, i18n } = useTranslation();
 
   const [resultData, setResultData] = useState<ResultDataType>({
     eyeshapeStatRankData: [],
@@ -81,7 +96,7 @@ const RankDetailPage = ({ params: { category } }: RankDetailPageProps) => {
             />
           </svg>
         </BackArrow>
-        <div>{`${categoryMap[category]} 랭킹`}</div>
+        <div>{`${categoryMap[i18n.language][category]} ${i18n.language === "ko" ? "랭킹" : "Rank"}`}</div>
       </Navigation>
       <DashboardContainer>
         <DetailDashboard data={resultData} category={category} sex={sex} />
